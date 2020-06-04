@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './GameBar.css';
-import { withNamespaces, Trans } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 
 function GameBar(props) {
     const { t } = props;
