@@ -5,7 +5,9 @@ import { withNamespaces } from 'react-i18next';
 import i18n from '../../../i18n';
 
 
-function Navbar({ t }) {
+function Navbar(props) {
+    const { t } = props;
+
     const handleLanguageChange = () => {
         i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en');
     }
@@ -24,6 +26,9 @@ function Navbar({ t }) {
                         <button id="flag" onClick={handleLanguageChange}>
                             <img alt="Switch Language flag" src={i18n.language === 'en' ? require("./es.png") : require("./en.png")} />
                         </button>
+                    </li>
+                    <li>                            
+                        <h2 style={{color: "white"}}>{i18n.language}</h2>
                     </li>
                     <li>{t('About')}</li>
                     <li>{t('How to play')}</li>
