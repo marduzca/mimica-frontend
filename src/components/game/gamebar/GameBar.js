@@ -8,6 +8,8 @@ function GameBar(props) {
     const [timer, setTimer] = useState(props.time);
     const [currentRound, setCurrentRound] = useState(1);
 
+    setCurrentRound(1);
+
     useEffect(() => {
         if (timer === 0) {
             setTimer(props.time);

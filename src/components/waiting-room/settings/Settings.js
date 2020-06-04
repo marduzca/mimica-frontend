@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import './Settings.css';
-import { withNamespaces, Trans } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
 
 function Settings(props) {
     const { t } = props;
