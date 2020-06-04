@@ -37,26 +37,3 @@
     transform: rotate(360deg);
   }
 }
-
-footer {
-  position: fixed;
-  bottom: 0;
-  background-color: rgb(60, 129, 208);
-  width: 100%;
-}
-
-footer ul {
-  margin: inherit;
-}
-
-footer ul :hover {
-  text-decoration: underline;
-}
-
-footer li {
-  display: inline-block;
-  margin: 0 40px;
-  font-weight: 700;
-  color: white;
-  font-size: 20px;
-}

@@ -1,16 +1,15 @@
 import React from 'react';
 import './App.css';
+import Navbar from './navbar/Navbar';
+import Footer from './footer/Footer';
 
 import Home from '../home/Home';
 import Game from '../game/Game';
-
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import WaitingRoom from 'components/waiting-room/WaitingRoom';
-import Navbar from './navbar/Navbar';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { withNamespaces } from 'react-i18next';
 
-function App({ t }) {
+function App() {
   return (
     <BrowserRouter>
       <div className="App">
@@ -24,15 +23,10 @@ function App({ t }) {
             <Route path="/game" component={Game} />
           </Switch>
         </main>
-        <footer>
-          <ul>
-            <li>{t('Contact')}</li>
-            <li>{t('Terms of service')}</li>
-          </ul>
-        </footer>
+        <Footer />
       </div>
     </BrowserRouter>
   );
 }
 
-export default withNamespaces()(App);
+export default App;
