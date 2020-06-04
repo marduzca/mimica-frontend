@@ -1,0 +1,20 @@
+.invitation {
+    margin-top: 2em;
+}
+
+.room-link {
+    display: flex;
+    justify-content: center;
+}
+
+.room-link span {
+    display: table-cell;
+    background-color: rgb(62, 63, 68);
+    color: white;
+}
+
+.room-link button {
+    display: table-cell;
+    background-color: rgb(60, 129, 208);
+    color: white;
+}

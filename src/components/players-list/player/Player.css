@@ -1,0 +1,11 @@
+
+.player {
+    background-color: rgb(62, 63, 68);
+    font-size: 20px;
+    min-width: 260px;
+    margin: 40px 0;
+}
+
+.player p {
+    display: block;
+}

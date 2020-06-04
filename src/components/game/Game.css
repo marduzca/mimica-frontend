@@ -1,0 +1,19 @@
+.game {
+    width: 90%;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.gameplay {
+    margin-top: 40px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gameplay * {
+    display: inline-block;
+    margin: 0 10px;
+    flex: 1 1;
+}

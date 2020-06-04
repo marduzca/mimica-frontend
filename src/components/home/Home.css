@@ -1,0 +1,44 @@
+* {
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#logo {
+    width: 300px;
+    margin: 10px auto;
+}
+
+.login {
+    border: 3px solid rgb(62, 63, 68);
+    width: 600px;
+    height: 250px;
+    background-color: rgb(62, 63, 68);
+    box-shadow: 5px 5px 5px 5px rgba(37, 38, 41, 0.425);
+}
+
+.login * {
+    margin: 20px 20px;
+}
+
+.input-fields {
+    color: rgb(225, 225, 225);
+    display: inline-block;
+    width: auto;
+}
+
+.input-fields * {
+    height: 50px;
+}
+
+.error {
+    color: red;
+    margin: 0px auto;
+}
+
+#playButton {
+    background-color: rgb(60, 129, 208);
+    width: 300px;
+    display: block;
+    margin: 30px auto 0px auto;
+    border-radius: 10px;
+    color: white;
+}

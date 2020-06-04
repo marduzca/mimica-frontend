@@ -1,0 +1,6 @@
+.players {
+    color: white;
+    border-collapse: separate;
+    float: left;
+    flex-basis: 200px;
+}

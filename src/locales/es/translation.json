@@ -1,0 +1,25 @@
+{
+  "Home": "Inicio",
+  "About": "Acerca de nosotros",
+  "How to play": "Como jugar",
+  "Other remote games": "Otros juegos online",
+  "Contact": "Contacto",
+  "Terms of service": "Términos y condiciones",
+
+  "Your name": "Tu nombre",
+  "English": "Inglés",
+  "Spanish": "Español",
+  "Play": "Jugar",
+  "You need to enter a name!": "Tienes que ingresar un nombre!",
+
+  "Settings": "Ajustes",
+  "Rounds": "Rondas",
+  "Time in seconds": "Tiempo en segundos",
+  "Language": "Lenguaje: {{language}}",
+  "Start game": "Empezar juego",
+  "Invite your friends": "Invita a tus amigos",
+  "Copy": "Copiar",
+
+  "Round status": "Ronda {{currentRound}} de {{numberOfRounds}}",
+  "Points": "Puntos: {{points}}"
+}

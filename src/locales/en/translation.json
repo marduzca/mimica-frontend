@@ -1,0 +1,25 @@
+{
+  "Home": "Home",
+  "About": "About",
+  "How to play": "How to play",
+  "Other remote games": "Other remote games",
+  "Contact": "Contact",
+  "Terms of service": "Terms of service",
+
+  "Your name": "Your name",
+  "English": "English",
+  "Spanish": "Spanish",
+  "Play": "Play",
+  "You need to enter a name!": "You need to enter a name!",
+
+  "Settings": "Settings",
+  "Rounds": "Rounds",
+  "Time in seconds": "Time in seconds",
+  "Language": "Language: {{language}}",
+  "Start game": "Start game",
+  "Invite your friends": "Invite your friends",
+  "Copy": "Copy",
+
+  "Round status": "Round {{currentRound}} of {{numberOfRounds}}",
+  "Points": "Points: {{points}}"
+}
