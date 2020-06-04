@@ -11,7 +11,7 @@
     "i18next-http-backend": "^1.0.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-i18next": "^11.5.0",
+    "react-i18next": "^9.0.10",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },
