@@ -18,7 +18,7 @@ function GameBar(props) {
                 () => setTimer(timer - 1)
                 , 1000);
         }
-    }, [timer, props.time]);
+    }, [timer, props.time, currentRound]);
 
     return (
         <div className="gamebar">
