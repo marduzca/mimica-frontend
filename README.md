@@ -1,30 +1,16 @@
-# Mímica
+# Mimica Frontend
 Website to play charades remotely
 
 ---
 
 ## How to:
 
-### Execute frontend
+### Execute
 ```sh
-> cd frontend/
 > npm start
   ```
 
-### Execute backend
+### Run tests
 ```sh
-> cd backend/
-> npm start
-```
-
-### Run frontend tests
-```sh
-> cd frontend/
-> npm test
-```
-
-### Run backend tests 
-```sh
-> cd backend/
 > npm test
 ```
