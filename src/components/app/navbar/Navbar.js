@@ -27,9 +27,6 @@ function Navbar(props) {
                             <img alt="Switch Language flag" src={i18n.language.match(/en/i) ? require("./es.png") : require("./en.png")} />
                         </button>
                     </li>
-                    <li>                            
-                        <h2 style={{color: "white"}}>{i18n.language}</h2>
-                    </li>
                     <li>{t('About')}</li>
                     <li>{t('How to play')}</li>
                     <li>{t('Other remote games')}</li>
