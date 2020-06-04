@@ -29,6 +29,7 @@ function Navbar({ t }) {
                     <li>{t('About')}</li>
                     <li>{t('How to play')}</li>
                     <li>{t('Other remote games')}</li>
+                    <li>Bala bala bla</li>
                 </div>
             </ul>
         </nav>
