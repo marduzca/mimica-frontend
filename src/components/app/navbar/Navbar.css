@@ -38,3 +38,19 @@ nav {
   nav .secondary-navbar {
     float: right;
   }
+
+  #flag {
+    padding: 0;
+    border: none;
+    background: none;
+    vertical-align: middle;
+    outline: none;
+  }
+
+  #flag img {
+    height: 30px;
+  }
+
+  #bala-easter-egg {
+    display: none;
+  }

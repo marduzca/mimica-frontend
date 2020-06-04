@@ -6,8 +6,8 @@ import i18n from '../../../i18n';
 
 
 function Navbar({ t }) {
-    const handleLanguageChange = e => {
-        i18n.changeLanguage(e.target.value);
+    const handleLanguageChange = () => {
+        i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en');
     }
 
     return (
@@ -21,15 +21,14 @@ function Navbar({ t }) {
                 </Link>
                 <div className="secondary-navbar">
                     <li>
-                        <select onChange={handleLanguageChange}>
-                            <option value="en">en</option>
-                            <option value="es">es</option>
-                        </select>
+                        <button id="flag" onClick={handleLanguageChange}>
+                            <img alt="Switch Language flag" src={i18n.language === 'en' ? require("./es.png") : require("./en.png")} />
+                        </button>
                     </li>
                     <li>{t('About')}</li>
                     <li>{t('How to play')}</li>
                     <li>{t('Other remote games')}</li>
-                    <li>Bala bala bala bala</li>
+                    <li id="bala-easter-egg">Bala bala bala bala</li>
                 </div>
             </ul>
         </nav>
