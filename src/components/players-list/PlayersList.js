@@ -41,11 +41,9 @@ function PlayersList(props) {
     }
 
     return (
-        <table className="players">
-            <tbody>
-                {fillList()}
-            </tbody>
-        </table>
+        <ul className="players">
+            {fillList()}
+        </ul>
     );
 }
 

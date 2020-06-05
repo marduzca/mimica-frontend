@@ -5,18 +5,16 @@ import Footer from './footer/Footer';
 
 import Home from '../home/Home';
 import Game from '../game/Game';
-import WaitingRoom from 'components/waiting-room/WaitingRoom';
+import WaitingRoom from '../waiting-room/WaitingRoom';
+import Dummy from '../dummy/Dummy';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Dummy from 'components/dummy/Dummy';
 
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <header className="App-header">
-          <Navbar />
-        </header>
+        <Navbar />
         <main>
           <Switch>
             <Route path="/" exact component={Home} />

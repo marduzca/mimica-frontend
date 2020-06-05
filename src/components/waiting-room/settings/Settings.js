@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { withNamespaces } from 'react-i18next';
 
 import './Settings.css';
-import { withNamespaces } from 'react-i18next';
+
+const roundsOptions = [3, 4, 5, 6, 7];
 
 function Settings(props) {
     const { t } = props;
@@ -25,11 +27,7 @@ function Settings(props) {
             <div className="settings">
                 <label htmlFor="rounds">{t('Rounds')}</label>
                 <select id="rounds" defaultValue="3" onChange={handleNumberOfRoundsChange}>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
+                    {roundsOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)};
                 </select>
 
                 <label htmlFor="time">{t('Time in seconds')}</label>
@@ -46,7 +44,7 @@ function Settings(props) {
                     <option value="120">120</option>
                 </select>
 
-                <p>{t('Language', {language: props.language})}</p>
+                <p>{t('Language', { language: props.language })}</p>
 
                 <button id="startButton" onClick={handleGameStart}>{t('Start game')}</button>
             </div>

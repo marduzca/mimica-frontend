@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import PlayersList from 'components/players-list/PlayersList';
-import Settings from './settings/Settings';
-import Invitation from './invitation/Invitation';
 import { Redirect } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
+
+import Settings from './settings/Settings';
+import Invitation from './invitation/Invitation';
+import PlayersList from '../players-list/PlayersList';
 
 import './WaitingRoom.css';
 

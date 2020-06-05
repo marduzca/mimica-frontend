@@ -13,27 +13,29 @@ function Navbar(props) {
     }
 
     return (
-        <nav>
-            <ul>
-                <Link to="/">
-                    <li className="primary-navbar">
-                        <img id="logo" alt="Mimica logo" src={require("../favicon.ico")} />
-                        <span>{t('Home')}</span>
-                    </li>
-                </Link>
-                <div className="secondary-navbar">
-                    <li>
-                        <button id="flag" onClick={handleLanguageChange}>
-                            <img alt="Switch Language flag" src={i18n.language.match(/en/i) ? require("./es.png") : require("./en.png")} />
-                        </button>
-                    </li>
-                    <li>{t('About')}</li>
-                    <li>{t('How to play')}</li>
-                    <li>{t('Other remote games')}</li>
-                    <li id="bala-easter-egg">Bala bala bala bala</li>
-                </div>
-            </ul>
-        </nav>
+        <header className="App-header">
+            <nav>
+                <ul>
+                    <Link to="/">
+                        <li className="primary-navbar">
+                            <img id="logo" alt="Mimica logo" src={require("../favicon.ico")} />
+                            <span>{t('Home')}</span>
+                        </li>
+                    </Link>
+                    <div className="secondary-navbar">
+                        <li>
+                            <button id="flag" onClick={handleLanguageChange}>
+                                <img alt="Switch Language flag" src={i18n.language.match(/en/i) ? require("./es.png") : require("./en.png")} />
+                            </button>
+                        </li>
+                        <li>{t('About')}</li>
+                        <li>{t('How to play')}</li>
+                        <li>{t('Other remote games')}</li>
+                        <li id="bala-easter-egg">Bala bala bala bala</li>
+                    </div>
+                </ul>
+            </nav>
+        </header>
     );
 }
 

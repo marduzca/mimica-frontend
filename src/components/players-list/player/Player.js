@@ -7,13 +7,13 @@ function Player(props) {
     const { t } = props;
 
     return (
-        <tr className="player" key={props.name}>
-            {props.inGame ? <td>#{props.position}</td> : null}
-            <td>
+        <li className="player" key={props.name}>
+            {props.inGame ? <span>#{props.position}</span> : null}
+            <span>
                 <p>{props.name}</p>
                 {props.inGame ? <p>{t('Points', {points: props.points})}</p> : null}
-            </td>
-        </tr>
+            </span>
+        </li>
     );
 }
 

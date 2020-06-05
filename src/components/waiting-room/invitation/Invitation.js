@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 
 import './Invitation.css';
-import { withNamespaces } from 'react-i18next';
 
 function Invitation(props) {
     const { t } = props;
 
-    const copyToClipboard = e => {
+    const copyToClipboard = () => {
         navigator.clipboard.writeText(props.roomLink);
     };
 
@@ -19,6 +20,10 @@ function Invitation(props) {
             </div>
         </div>
     );
+}
+
+Invitation.propTypes = {
+    roomLink: PropTypes.string.isRequired
 }
 
 export default withNamespaces()(Invitation);
