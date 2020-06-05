@@ -7,6 +7,7 @@ import Home from '../home/Home';
 import Game from '../game/Game';
 import WaitingRoom from 'components/waiting-room/WaitingRoom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Dummy from 'components/dummy/Dummy';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/waiting-room" component={WaitingRoom} />
             <Route path="/game" component={Game} />
+            <Route path="/dummy" component={Dummy} />
           </Switch>
         </main>
         <Footer />
