@@ -6,7 +6,7 @@ function Dummy() {
     const callBackend = async () => {
         const backendResponse = await fetch(process.env.REACT_APP_MIMICA_BACKEND_URL);
 
-        if(backendResponse.ok) {
+        if (backendResponse.ok) {
             const responseText = await backendResponse.text();
             setResponse(responseText);
         }
@@ -17,7 +17,7 @@ function Dummy() {
             <button onClick={callBackend}>Call the backend</button>
             <div>
                 <label htmlFor="response">Response: </label>
-                <span id="response">{response}</span>
+                <span id="response">{response}{process.env.REACT_APP_MIMICA_BACKEND_URL}</span>
             </div>
         </div>
     );
