@@ -9,7 +9,6 @@ import WaitingRoom from '../waiting-room/WaitingRoom';
 import Dummy from '../dummy/Dummy';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-
 function App() {
   return (
     <BrowserRouter>

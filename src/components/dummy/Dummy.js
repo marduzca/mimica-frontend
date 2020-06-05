@@ -4,7 +4,7 @@ function Dummy() {
     const [response, setResponse] = useState('');
 
     const callBackend = async () => {
-        const backendResponse = await fetch('http://localhost:9000/dummy');
+        const backendResponse = await fetch(process.env.REACT_APP_MIMICA_BACKEND_URL);
 
         if(backendResponse.ok) {
             const responseText = await backendResponse.text();
