@@ -9,10 +9,10 @@ function Player(props) {
 
     return (
         <li className="player" key={props.name}>
-            {props.inGame ? <span>#{props.position}</span> : null}
+            {props.inGame ? <span data-testid="position-text">#{props.position}</span> : null}
             <span>
                 <p>{props.name}</p>
-                {props.inGame ? <p>{t('Points', {points: props.points})}</p> : null}
+                {props.inGame ? <p data-testid="points-text">{t('Points', {points: props.points})}</p> : null}
             </span>
         </li>
     );

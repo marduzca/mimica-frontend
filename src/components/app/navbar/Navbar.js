@@ -26,7 +26,7 @@ function Navbar(props) {
                     </Link>
                     <div className="secondary-navbar">
                         <li>
-                            <button id="flag" onClick={handleLanguageChange}>
+                            <button id="flag" data-testid="language-button" onClick={handleLanguageChange}>
                                 <img alt="Switch Language flag" src={i18n.language.match(/en/i) ? require("./es.png") : require("./en.png")} />
                             </button>
                         </li>

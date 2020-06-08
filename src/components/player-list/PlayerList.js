@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import Player from './player/Player';
 
-import './PlayersList.css';
+import './PlayerList.css';
 
-function PlayersList(props) {
+function PlayerList(props) {
     const players = [
         {
             name: props.playerName,
@@ -49,8 +49,9 @@ function PlayersList(props) {
     );
 }
 
-PlayersList.propTypes = {
-    inGame: PropTypes.bool.isRequired
+PlayerList.propTypes = {
+    inGame: PropTypes.bool.isRequired,
+    playerName: PropTypes.string.isRequired
 };
 
-export default PlayersList;
+export default PlayerList;

@@ -13,12 +13,7 @@ function Home(props) {
     const [nameIsEmpty, setNameIsEmpty] = useState(false);
 
     const handleLogin = () => {
-        if (!name.trim()) {
-            setNameIsEmpty(true);
-        }
-        else {
-            setAuth(true);
-        }
+        !name.trim() ? setNameIsEmpty(true) : setAuth(true);
     }
 
     const handleNameChange = (event) => {

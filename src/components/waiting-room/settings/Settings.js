@@ -28,12 +28,12 @@ function Settings(props) {
         <div>
             <div className="settings">
                 <label htmlFor="rounds">{t('Rounds')}</label>
-                <select id="rounds" defaultValue="3" onChange={handleNumberOfRoundsChange}>
+                <select id="rounds" data-testid="round-select" defaultValue="3" onChange={handleNumberOfRoundsChange}>
                     {roundsOptions.map(rounds => <option key={rounds} value={rounds}>{rounds}</option>)};
                 </select>
 
                 <label htmlFor="time">{t('Time in seconds')}</label>
-                <select id="time" defaultValue="80" onChange={handleTimeChange}>
+                <select id="time" data-testid="time-select" defaultValue="80" onChange={handleTimeChange}>
                     {timeOptions.map(time => <option key={time} value={time}>{time}</option>)};
                 </select>
 

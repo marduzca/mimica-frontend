@@ -5,7 +5,7 @@ import { withNamespaces } from 'react-i18next';
 
 import Settings from './settings/Settings';
 import Invitation from './invitation/Invitation';
-import PlayersList from '../players-list/PlayersList';
+import PlayerList from '../player-list/PlayerList';
 
 import './WaitingRoom.css';
 
@@ -38,7 +38,7 @@ function WaitingRoom(props) {
                         <h2>{t('Settings')}</h2>
                         <Settings language={props.location.state.language} initializeGame={initializeGame} />
                     </div>
-                    <PlayersList playerName={props.location.state.playerName} inGame={false} />
+                    <PlayerList playerName={props.location.state.playerName} inGame={false} />
                 </div>
                 <Invitation roomLink={props.location.state.roomLink} />
             </div>
