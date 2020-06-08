@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import WaitingRoom from './WaitingRoom';
 import { render, fireEvent, getNodeText } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import WaitingRoom from './WaitingRoom';
 
 test('Elements (host name, language and link) passed from home page are displayed', () => {
     const { getByText } = render(

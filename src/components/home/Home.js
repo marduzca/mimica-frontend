@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-
-import './Home.css';
 import { Redirect } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
+
+import './Home.css';
 
 function Login({t}) {
     const [name, setName] = useState('');

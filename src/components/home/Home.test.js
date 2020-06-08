@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Home from './Home';
 import { BrowserRouter as Router } from 'react-router-dom';
+
+import Home from './Home';
 
 test('User can login and go to waiting-room page', () => {
     const { getByRole, getByPlaceholderText } = render(

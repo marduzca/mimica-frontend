@@ -1,8 +1,9 @@
 import React from 'react';
+
+import GameBar from './gamebar/GameBar';
 import PlayersList from '../players-list/PlayersList';
 import VideoCamera from './videocam/VideoCamera';
 import Chat from './chat/Chat';
-import GameBar from './gamebar/GameBar';
 
 import './Game.css';
 

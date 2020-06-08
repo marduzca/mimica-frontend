@@ -1,13 +1,14 @@
 import React from 'react';
-import './App.css';
-import Navbar from './navbar/Navbar';
-import Footer from './footer/Footer';
-
-import Home from '../home/Home';
-import Game from '../game/Game';
-import WaitingRoom from '../waiting-room/WaitingRoom';
-import Dummy from '../dummy/Dummy';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+import Footer from './footer/Footer';
+import Navbar from './navbar/Navbar';
+import Home from '../home/Home';
+import WaitingRoom from '../waiting-room/WaitingRoom';
+import Game from '../game/Game';
+import Dummy from '../dummy/Dummy';
+
+import './App.css';
 
 function App() {
   return (

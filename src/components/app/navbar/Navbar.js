@@ -1,9 +1,10 @@
 import React from 'react';
-import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
+
 import i18n from '../../../i18n';
 
+import './Navbar.css';
 
 function Navbar(props) {
     const { t } = props;

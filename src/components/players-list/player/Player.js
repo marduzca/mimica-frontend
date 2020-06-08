@@ -1,7 +1,7 @@
 import React from 'react';
+import { withNamespaces } from 'react-i18next';
 
 import './Player.css';
-import { withNamespaces } from 'react-i18next';
 
 function Player(props) {
     const { t } = props;
