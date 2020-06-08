@@ -17,7 +17,7 @@ function Dummy() {
             <button onClick={callBackend}>Call the backend</button>
             <div>
                 <label htmlFor="response">Response: </label>
-                <span id="response">{response}{process.env.REACT_APP_MIMICA_BACKEND_URL}</span>
+                <span id="response">{response}</span>
             </div>
         </div>
     );
