@@ -4,7 +4,7 @@ import { withNamespaces } from 'react-i18next';
 import './Settings.css';
 
 const roundsOptions = [3, 4, 5, 6, 7];
-const timesOptions = [30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
+const timeOptions = [30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
 
 function Settings(props) {
     const { t } = props;
@@ -28,12 +28,12 @@ function Settings(props) {
             <div className="settings">
                 <label htmlFor="rounds">{t('Rounds')}</label>
                 <select id="rounds" defaultValue="3" onChange={handleNumberOfRoundsChange}>
-                    {roundsOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)};
+                    {roundsOptions.map(rounds => <option key={rounds} value={rounds}>{rounds}</option>)};
                 </select>
 
                 <label htmlFor="time">{t('Time in seconds')}</label>
                 <select id="time" defaultValue="80" onChange={handleTimeChange}>
-                    {timesOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)};
+                    {timeOptions.map(time => <option key={time} value={time}>{time}</option>)};
                 </select>
 
                 <p>{t('Language', { language: props.language })}</p>
