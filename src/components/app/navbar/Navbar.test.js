@@ -15,11 +15,10 @@ test('Language can be switched by clicking on the flags', () => {
     );
 
     const languageButton = getByTestId('language-button');
-    fireEvent.click(languageButton);    //Switch to English
 
+    fireEvent.click(languageButton);    //Switch to English
     expect(i18n.language).toBe('en');
 
     fireEvent.click(languageButton);    //Switch to Spanish
-
     expect(i18n.language).toBe('es');
 });
