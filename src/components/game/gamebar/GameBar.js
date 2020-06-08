@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 
 import './GameBar.css';
@@ -30,5 +31,11 @@ function GameBar(props) {
         </div>
     );
 }
+
+GameBar.propTypes = {
+    t: PropTypes.func.isRequired,
+    time: PropTypes.number.isRequired,
+    numberOfRounds: PropTypes.number.isRequired
+};
 
 export default withNamespaces()(GameBar);

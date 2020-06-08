@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import GameBar from './gamebar/GameBar';
 import PlayersList from '../players-list/PlayersList';
@@ -19,5 +20,15 @@ function Game(props) {
         </div>
     );
 }
+
+Game.propTypes = {
+    location: PropTypes.shape({
+        state: PropTypes.shape({
+            time: PropTypes.number.isRequired,
+            numberOfRounds: PropTypes.number.isRequired,
+            playerName: PropTypes.string.isRequired
+        })
+    })
+};
 
 export default Game;

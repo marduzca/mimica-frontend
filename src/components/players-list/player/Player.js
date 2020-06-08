@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 
 import './Player.css';
@@ -16,5 +17,10 @@ function Player(props) {
         </li>
     );
 }
+
+Player.propTypes = {
+    t: PropTypes.func.isRequired,
+    inGame: PropTypes.bool.isRequired
+};
 
 export default withNamespaces()(Player);

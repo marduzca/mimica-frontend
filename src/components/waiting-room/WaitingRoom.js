@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 
@@ -43,5 +44,15 @@ function WaitingRoom(props) {
             </div>
         );
 }
+
+WaitingRoom.propTypes = {
+    t: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+        state: PropTypes.shape({
+            playerName: PropTypes.string.isRequired,
+            language: PropTypes.string.isRequired
+        })
+    })
+};
 
 export default withNamespaces()(WaitingRoom);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Player from './player/Player';
 
@@ -47,5 +48,9 @@ function PlayersList(props) {
         </ul>
     );
 }
+
+PlayersList.propTypes = {
+    inGame: PropTypes.bool.isRequired
+};
 
 export default PlayersList;

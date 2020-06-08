@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 
@@ -39,5 +40,9 @@ function Navbar(props) {
         </header>
     );
 }
+
+Navbar.propTypes = {
+    t: PropTypes.func.isRequired
+};
 
 export default withNamespaces()(Navbar);

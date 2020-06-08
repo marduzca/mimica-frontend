@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 
 import './Settings.css';
@@ -12,11 +13,11 @@ function Settings(props) {
     const [time, setTime] = useState(80);
 
     const handleNumberOfRoundsChange = (event) => {
-        setNumberOfRounds(event.target.value);
+        setNumberOfRounds(Number(event.target.value));
     };
 
     const handleTimeChange = (event) => {
-        setTime(event.target.value)
+        setTime(Number(event.target.value))
     };
 
     const handleGameStart = () => {
@@ -43,5 +44,11 @@ function Settings(props) {
         </div>
     );
 }
+
+Settings.propTypes = {
+    t: PropTypes.func.isRequired,
+    language: PropTypes.string.isRequired,
+    initializeGame: PropTypes.func.isRequired
+};
 
 export default withNamespaces()(Settings);

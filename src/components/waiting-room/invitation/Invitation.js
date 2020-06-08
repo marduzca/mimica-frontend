@@ -23,6 +23,7 @@ function Invitation(props) {
 }
 
 Invitation.propTypes = {
+    t: PropTypes.func.isRequired,
     roomLink: PropTypes.string.isRequired
 }
 

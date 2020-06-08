@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 
 import './Home.css';
 
-function Login({t}) {
+function Home(props) {
+    const { t } = props;
     const [name, setName] = useState('');
     const [language, setLanguage] = useState('English');
     const [auth, setAuth] = useState(false);
@@ -55,4 +57,8 @@ function Login({t}) {
         );
 }
 
-export default withNamespaces()(Login);
+Home.propTypes = {
+    t: PropTypes.func.isRequired
+};
+
+export default withNamespaces()(Home);
