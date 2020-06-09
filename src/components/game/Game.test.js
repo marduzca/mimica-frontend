@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, getNodeText } from '@testing-library/react';
+import { render, getNodeText, screen } from '@testing-library/react';
 
 import Game from './Game';
 
@@ -7,7 +7,7 @@ test('Elements (number of rounds, time) passed from waiting room page are displa
     const name = 'Miguel';
     const time = 80;
 
-    const { getByText, getByTestId } = render(
+    render(
         <Game location={
             {
                 state: {
@@ -20,8 +20,8 @@ test('Elements (number of rounds, time) passed from waiting room page are displa
         } />
     );
 
-    expect(getByText(name)).toBeInTheDocument();
-    expect(Number(getNodeText(getByTestId('timer-display')))).toBe(time);
+    expect(screen.getByText(name)).toBeInTheDocument();
+    expect(Number(getNodeText(screen.getByTestId('timer-display')))).toBe(time);
 });
 
 test('Turn ends when count down is over', () => {

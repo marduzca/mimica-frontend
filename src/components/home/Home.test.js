@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
@@ -7,20 +7,20 @@ import Home from './Home';
 
 test('User can login and go to waiting-room page', () => {
     const history = createMemoryHistory();
-    const { getByRole, getByPlaceholderText } = render(
+    render(
         <Router history={history}>
             <Home />
         </Router>
     );
 
-    const nameInput = getByPlaceholderText('Your name');
+    const nameInput = screen.getByPlaceholderText('Your name');
     fireEvent.change(nameInput, {
         target: {
             value: 'Miguel'
         }
     });
 
-    const playButton = getByRole('button', { name: 'Play' });
+    const playButton = screen.getByRole('button', { name: 'Play' });
     fireEvent.click(playButton);
 
     expect(history.location.pathname).toBe('/waiting-room');
@@ -29,10 +29,10 @@ test('User can login and go to waiting-room page', () => {
 });
 
 test('User cannot login with empty name', () => {
-    const { getByRole } = render(<Home />);
+    render(<Home />);
 
-    const playButton = getByRole('button', { name: 'Play' });
+    const playButton = screen.getByRole('button', { name: 'Play' });
     fireEvent.click(playButton);
 
-    expect(getByRole('alert')).toBeTruthy();
+    expect(screen.getByRole('alert')).toBeTruthy();
 });

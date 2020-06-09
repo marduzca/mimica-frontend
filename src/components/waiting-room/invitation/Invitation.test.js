@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 
 import Invitation from './Invitation';
 
@@ -16,9 +16,9 @@ afterAll(() => {
 
 test('Right value is copied to the clipboard', () => {
     const roomLink = 'https://mimica.com/?xweLh250oNmm';
-    const { getByRole } = render(<Invitation roomLink={roomLink} />);
+    render(<Invitation roomLink={roomLink} />);
 
-    const copyButton = getByRole('button', { name: 'Copy' });
+    const copyButton = screen.getByRole('button', { name: 'Copy' });
     fireEvent.click(copyButton);
 
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(roomLink);

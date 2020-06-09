@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
 import WaitingRoom from './WaitingRoom';
 
 test('Elements (host name, language and link) passed from home page are displayed', () => {
-    const { getByText } = render(
+    render(
         <WaitingRoom location={
             {
                 state: {
@@ -18,14 +18,14 @@ test('Elements (host name, language and link) passed from home page are displaye
         } />
     );
 
-    expect(getByText(/Miguel/i)).toBeInTheDocument();
-    expect(getByText(/Language/i)).toBeInTheDocument();
-    expect(getByText('https://mimica.com/?xweLh250oNmm')).toBeInTheDocument();
+    expect(screen.getByText(/Miguel/i)).toBeInTheDocument();
+    expect(screen.getByText(/Language/i)).toBeInTheDocument();
+    expect(screen.getByText('https://mimica.com/?xweLh250oNmm')).toBeInTheDocument();
 });
 
 test('User can start the game with default settings', () => {
     const history = createMemoryHistory();
-    const { getByRole } = render(
+    render(
         <Router history={history}>
             <WaitingRoom location={
                 {
@@ -39,7 +39,7 @@ test('User can start the game with default settings', () => {
         </Router>
     );
 
-    const startGameButton = getByRole('button', { name: 'Start game' });
+    const startGameButton = screen.getByRole('button', { name: 'Start game' });
     fireEvent.click(startGameButton);
 
     expect(history.location.pathname).toBe('/game');
@@ -51,7 +51,7 @@ test('User can start the game with default settings', () => {
 
 test('User can start the game with custom settings', () => {
     const history = createMemoryHistory();
-    const { getByRole, getByTestId } = render(
+    render(
         <Router history={history}>
             <WaitingRoom location={
                 {
@@ -67,15 +67,15 @@ test('User can start the game with custom settings', () => {
 
     );
 
-    fireEvent.change(getByTestId('round-select'), {
+    fireEvent.change(screen.getByTestId('round-select'), {
         target: {value: 5}
     });
 
-    fireEvent.change(getByTestId('time-select'), {
+    fireEvent.change(screen.getByTestId('time-select'), {
         target: {value: 100}
     });
 
-    const startGameButton = getByRole('button', { name: 'Start game' });
+    const startGameButton = screen.getByRole('button', { name: 'Start game' });
     fireEvent.click(startGameButton);
 
     expect(history.location.pathname).toBe('/game');

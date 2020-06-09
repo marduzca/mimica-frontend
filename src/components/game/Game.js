@@ -14,7 +14,7 @@ function Game(props) {
             <GameBar time={props.location.state.time} numberOfRounds={props.location.state.numberOfRounds} />
             <div className="gameplay">
                 <PlayerList playerName={props.location.state.playerName} inGame={true} />
-                <VideoCamera />
+                {/* <VideoCamera /> */}
                 <Chat />
             </div>
         </div>
