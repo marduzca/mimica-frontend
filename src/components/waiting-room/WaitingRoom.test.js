@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
@@ -67,13 +68,9 @@ test('User can start the game with custom settings', () => {
 
     );
 
-    fireEvent.change(screen.getByTestId('round-select'), {
-        target: {value: 5}
-    });
+    userEvent.selectOptions(screen.getByTestId('round-select'), '5');
 
-    fireEvent.change(screen.getByTestId('time-select'), {
-        target: {value: 100}
-    });
+    userEvent.selectOptions(screen.getByTestId('time-select'), '100');
 
     const startGameButton = screen.getByRole('button', { name: 'Start game' });
     fireEvent.click(startGameButton);
