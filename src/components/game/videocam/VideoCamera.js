@@ -19,7 +19,7 @@ function VideoCamera() {
 
   useEffect(() => {
     socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
