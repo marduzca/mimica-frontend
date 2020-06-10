@@ -18,9 +18,8 @@ function VideoCamera() {
   const socket = useRef();
 
   useEffect(() => {
-    console.log('Connecting to ' + process.env.REACT_APP_MIMICA_BACKEND_URL);
     socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
         userVideo.current.srcObject = stream;
@@ -28,19 +27,13 @@ function VideoCamera() {
     })
 
     socket.current.on('yourID', (id) => {
-      console.log('ON yourID ' + id);
-
       setYourID(id);
     })
     socket.current.on('allUsers', (users) => {
-      console.log('ON allUSERS ' + users);
-
       setUsers(users);
     })
 
     socket.current.on('hey', (data) => {
-      console.log('ON hey ');
-
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
@@ -70,22 +63,16 @@ function VideoCamera() {
     });
 
     peer.on('signal', data => {
-      console.log('ON signal ');
-
       socket.current.emit('callUser', { userToCall: id, signalData: data, from: yourID })
     })
 
     peer.on('stream', stream => {
-      console.log('ON stream ');
-
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
     });
 
     socket.current.on('callAccepted', signal => {
-      console.log('ON callAccepted ');
-
       setCallAccepted(true);
       peer.signal(signal);
     })
