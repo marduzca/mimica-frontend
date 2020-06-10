@@ -18,7 +18,7 @@ function VideoCamera() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io.connect("http://localhost:8000/");
+    socket.current = io.connect("http://localhost:9000/");
     navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
