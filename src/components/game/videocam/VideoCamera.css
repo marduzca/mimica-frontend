@@ -20,4 +20,6 @@
 
 video {
     border: 1px solid blue;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
 }
