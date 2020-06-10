@@ -18,6 +18,7 @@ function VideoCamera() {
   const socket = useRef();
 
   useEffect(() => {
+    console.log('Connecting to ' + process.env.REACT_APP_MIMICA_BACKEND_URL);
     socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
     navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
       setStream(stream);
@@ -144,7 +145,7 @@ function VideoCamera() {
             return null;
           }
           return (
-            <button onClick={() => callPeer(key)}>Call {key}</button>
+            <button onClick={() => callPeer(key)} key={key}>Call {key}</button>
           );
         })}
       </div>
