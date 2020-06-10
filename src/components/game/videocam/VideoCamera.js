@@ -1,15 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import io from "socket.io-client";
-import Peer from "simple-peer";
+import io from 'socket.io-client';
+import Peer from 'simple-peer';
 
 import './VideoCamera.css';
 
 function VideoCamera() {
-  const [yourID, setYourID] = useState("");
+  const [yourID, setYourID] = useState('');
   const [users, setUsers] = useState({});
   const [stream, setStream] = useState();
   const [receivingCall, setReceivingCall] = useState(false);
-  const [caller, setCaller] = useState("");
+  const [caller, setCaller] = useState('');
   const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
 
@@ -18,7 +18,7 @@ function VideoCamera() {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io.connect("http://localhost:9000/");
+    socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
     navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
       setStream(stream);
       if (userVideo.current) {
@@ -26,14 +26,14 @@ function VideoCamera() {
       }
     })
 
-    socket.current.on("yourID", (id) => {
+    socket.current.on('yourID', (id) => {
       setYourID(id);
     })
-    socket.current.on("allUsers", (users) => {
+    socket.current.on('allUsers', (users) => {
       setUsers(users);
     })
 
-    socket.current.on("hey", (data) => {
+    socket.current.on('hey', (data) => {
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
@@ -48,31 +48,31 @@ function VideoCamera() {
 
         iceServers: [
             {
-                urls: "stun:numb.viagenie.ca",
-                username: "sultan1640@gmail.com",
-                credential: "98376683"
+                urls: 'stun:numb.viagenie.ca',
+                username: 'sultan1640@gmail.com',
+                credential: '98376683'
             },
             {
-                urls: "turn:numb.viagenie.ca",
-                username: "sultan1640@gmail.com",
-                credential: "98376683"
+                urls: 'turn:numb.viagenie.ca',
+                username: 'sultan1640@gmail.com',
+                credential: '98376683'
             }
         ]
     },
       stream: stream,
     });
 
-    peer.on("signal", data => {
-      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
+    peer.on('signal', data => {
+      socket.current.emit('callUser', { userToCall: id, signalData: data, from: yourID })
     })
 
-    peer.on("stream", stream => {
+    peer.on('stream', stream => {
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
     });
 
-    socket.current.on("callAccepted", signal => {
+    socket.current.on('callAccepted', signal => {
       setCallAccepted(true);
       peer.signal(signal);
     })
@@ -86,11 +86,11 @@ function VideoCamera() {
       trickle: false,
       stream: stream,
     });
-    peer.on("signal", data => {
-      socket.current.emit("acceptCall", { signal: data, to: caller })
+    peer.on('signal', data => {
+      socket.current.emit('acceptCall', { signal: data, to: caller })
     })
 
-    peer.on("stream", stream => {
+    peer.on('stream', stream => {
       partnerVideo.current.srcObject = stream;
     });
 
