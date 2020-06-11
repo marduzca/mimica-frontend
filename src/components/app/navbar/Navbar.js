@@ -33,7 +33,7 @@ function Navbar(props) {
                         <li>{t('About')}</li>
                         <li>{t('How to play')}</li>
                         <li>{t('Other remote games')}</li>
-                        <li id="bala-easter-egg">Bala bala bala bala</li>
+                        <li id="bala-easter-egg">🎶 Bala bala bala bala 🎶</li>
                     </div>
                 </ul>
             </nav>
