@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/app/App';
 import * as serviceWorker from './serviceWorker';
+import HttpsRedirect from 'react-https-redirect';
+
+
+import App from './components/app/App';
 import './i18n';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HttpsRedirect>
+      <App />
+    </HttpsRedirect>
   </React.StrictMode>,
   document.getElementById('root')
 );
