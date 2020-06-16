@@ -7,8 +7,8 @@ function Dummy() {
         const backendResponse = await fetch(`${process.env.REACT_APP_MIMICA_BACKEND_URL}/dummy`);
 
         if (backendResponse.ok) {
-            const responseText = await backendResponse.text();
-            setResponse(responseText);
+            const jsonResponse = await backendResponse.json();
+            setResponse(`${jsonResponse.name}, ${jsonResponse.age}`);
         }
     };
 
