@@ -9,7 +9,7 @@ test('User can login and go to waiting-room page', () => {
     const history = createMemoryHistory();
     render(
         <Router history={history}>
-            <Home />
+            <Home location={{ search:  'mimica.herokuapp.com/'}} />
         </Router>
     );
 
@@ -29,7 +29,7 @@ test('User can login and go to waiting-room page', () => {
 });
 
 test('User cannot login with empty name', () => {
-    render(<Home />);
+    render(<Home location={{ search:  'mimica.herokuapp.com/'}} />);
 
     const playButton = screen.getByRole('button', { name: 'Play' });
     fireEvent.click(playButton);
