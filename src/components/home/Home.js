@@ -9,7 +9,7 @@ function Home(props) {
     const { t } = props;
     const [name, setName] = useState('');
     const [language, setLanguage] = useState('English');
-    const [roomLink, setRoomLink] = useState('');
+    const [roomID, setRoomID] = useState('');
     const [auth, setAuth] = useState(false);
     const [nameIsEmpty, setNameIsEmpty] = useState(false);
     const gameURL = 'mimica.herokuapp.com/?room=';
@@ -18,15 +18,14 @@ function Home(props) {
         const query = new URLSearchParams(props.location.search);
         for (let param of query.entries()) {
             if (param[0] === 'room') {
-                console.log(param[1]);
-                setRoomLink(param[1]);
+                setRoomID(param[1]);
             }
         }
     }, [props.location.search]);
 
     const handleLogin = () => {
-        if (!roomLink) {
-            setRoomLink(generateRandomString());
+        if (!roomID) {
+            setRoomID(generateRandomString());
         }
 
         !name.trim() ? setNameIsEmpty(true) : setAuth(true);
@@ -51,7 +50,7 @@ function Home(props) {
             state: {
                 playerName: name,
                 language: language,
-                roomLink: gameURL + roomLink
+                roomLink: gameURL + roomID
             }
         }} />
         : (
