@@ -31,7 +31,7 @@ function VideoCamera() {
     })
     socket.current.on('allUsers', (users) => {
       setUsers(users);
-    })
+    }) 
 
     socket.current.on('hey', (data) => {
       setReceivingCall(true);
