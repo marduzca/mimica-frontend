@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
@@ -9,10 +9,26 @@ function Home(props) {
     const { t } = props;
     const [name, setName] = useState('');
     const [language, setLanguage] = useState('English');
+    const [roomLink, setRoomLink] = useState('');
     const [auth, setAuth] = useState(false);
     const [nameIsEmpty, setNameIsEmpty] = useState(false);
+    const gameURL = 'mimica.herokuapp.com/?room=';
+
+    useEffect(() => {
+        const query = new URLSearchParams(props.location.search);
+        for (let param of query.entries()) {
+            if (param[0] === 'room') {
+                console.log(param[1]);
+                setRoomLink(param[1]);
+            }
+        }
+    }, [props.location.search]);
 
     const handleLogin = () => {
+        if (!roomLink) {
+            setRoomLink(generateRandomString());
+        }
+
         !name.trim() ? setNameIsEmpty(true) : setAuth(true);
     }
 
@@ -25,13 +41,17 @@ function Home(props) {
         setLanguage(event.target.value);
     }
 
+    const generateRandomString = (length = 12) => {
+        return Math.random().toString(36).substr(2, length);
+    }
+
     return auth ?
         <Redirect to={{
-            pathname: "/waiting-room",
+            pathname: '/waiting-room',
             state: {
                 playerName: name,
                 language: language,
-                roomLink: 'https://mimica.com/?xweLh250oNmm'
+                roomLink: gameURL + roomLink
             }
         }} />
         : (
