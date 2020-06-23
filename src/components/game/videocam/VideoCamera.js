@@ -5,11 +5,11 @@ import Peer from 'simple-peer';
 import './VideoCamera.css';
 
 function VideoCamera() {
-  const [yourID, setYourID] = useState("");
+  const [yourID, setYourID] = useState('');
   const [users, setUsers] = useState({});
   const [stream, setStream] = useState();
   const [receivingCall, setReceivingCall] = useState(false);
-  const [caller, setCaller] = useState("");
+  const [caller, setCaller] = useState('');
   const [callerSignal, setCallerSignal] = useState();
   const [callAccepted, setCallAccepted] = useState(false);
 
@@ -48,14 +48,14 @@ function VideoCamera() {
 
         iceServers: [
             {
-                urls: "stun:numb.viagenie.ca",
-                username: "sultan1640@gmail.com",
-                credential: "98376683"
+                urls: 'stun:numb.viagenie.ca',
+                username: 'sultan1640@gmail.com',
+                credential: '98376683'
             },
             {
-                urls: "turn:numb.viagenie.ca",
-                username: "sultan1640@gmail.com",
-                credential: "98376683"
+                urls: 'turn:numb.viagenie.ca',
+                username: 'sultan1640@gmail.com',
+                credential: '98376683'
             }
         ]
     },
