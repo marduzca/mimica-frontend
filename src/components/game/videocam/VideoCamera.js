@@ -26,14 +26,14 @@ function VideoCamera() {
       }
     })
 
-    socket.current.on("yourID", (id) => {
+    socket.current.on('yourID', (id) => {
       setYourID(id);
     })
-    socket.current.on("allUsers", (users) => {
+    socket.current.on('allUsers', (users) => {
       setUsers(users);
     })
 
-    socket.current.on("hey", (data) => {
+    socket.current.on('hey', (data) => {
       setReceivingCall(true);
       setCaller(data.from);
       setCallerSignal(data.signal);
@@ -62,17 +62,17 @@ function VideoCamera() {
       stream: stream,
     });
 
-    peer.on("signal", data => {
-      socket.current.emit("callUser", { userToCall: id, signalData: data, from: yourID })
+    peer.on('signal', data => {
+      socket.current.emit('callUser', { userToCall: id, signalData: data, from: yourID })
     })
 
-    peer.on("stream", stream => {
+    peer.on('stream', stream => {
       if (partnerVideo.current) {
         partnerVideo.current.srcObject = stream;
       }
     });
 
-    socket.current.on("callAccepted", signal => {
+    socket.current.on('callAccepted', signal => {
       setCallAccepted(true);
       peer.signal(signal);
     })
@@ -86,11 +86,11 @@ function VideoCamera() {
       trickle: false,
       stream: stream,
     });
-    peer.on("signal", data => {
-      socket.current.emit("acceptCall", { signal: data, to: caller })
+    peer.on('signal', data => {
+      socket.current.emit('acceptCall', { signal: data, to: caller })
     })
 
-    peer.on("stream", stream => {
+    peer.on('stream', stream => {
       partnerVideo.current.srcObject = stream;
     });
 
