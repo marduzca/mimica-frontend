@@ -6,22 +6,21 @@ import { createMemoryHistory } from 'history';
 
 import WaitingRoom from './WaitingRoom';
 
-test('Elements (host name, language and link) passed from home page are displayed', () => {
+test('Elements (language and link) passed from home page are displayed', () => {
     render(
         <WaitingRoom location={
             {
                 state: {
                     playerName: 'Miguel',
                     language: 'English',
-                    roomLink: 'https://mimica.com/?xweLh250oNmm'
+                    roomID: 'xweLh250oNmm'
                 }
             }
         } />
     );
 
-    expect(screen.getByText(/Miguel/i)).toBeInTheDocument();
     expect(screen.getByText(/Language/i)).toBeInTheDocument();
-    expect(screen.getByText('https://mimica.com/?xweLh250oNmm')).toBeInTheDocument();
+    expect(screen.getByText(/room=xweLh250oNmm/i)).toBeInTheDocument();
 });
 
 test('User can start the game with default settings', () => {
