@@ -34,7 +34,7 @@ function WaitingRoom(props) {
             setCurrentPlayers(players);
         });
 
-        window.addEventListener("beforeunload", () => {
+        window.addEventListener("unload", () => {
             socket.current.emit('remove', {
                 roomID: props.location.state.roomID,
                 id: socket.current.id
