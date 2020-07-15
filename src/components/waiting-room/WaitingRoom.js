@@ -23,18 +23,18 @@ function WaitingRoom(props) {
         socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
 
         socket.current.on('connect', () => {
-            socket.current.emit('player', {
+            socket.current.emit('newPlayer', {
                 roomID: props.location.state.roomID,
                 name: props.location.state.playerName,
                 id: socket.current.id
             });
         });
 
-        socket.current.on('allUsers', (players) => {
+        socket.current.on('currentPlayers', (players) => {
             setCurrentPlayers(players);
         });
 
-        window.addEventListener("unload", () => {
+        window.addEventListener('unload', () => {
             socket.current.emit('remove', {
                 roomID: props.location.state.roomID,
                 id: socket.current.id
