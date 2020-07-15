@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
+import io from 'socket.io-client';
 
 import Settings from './settings/Settings';
 import Invitation from './invitation/Invitation';
@@ -14,6 +15,33 @@ function WaitingRoom(props) {
     const [startGame, setStartGame] = useState(false);
     const [numberOfRounds, setNumberOfRounds] = useState(3);
     const [time, setTime] = useState(80);
+    const [currentPlayers, setCurrentPlayers] = useState([]);
+
+    const socket = useRef();
+
+    useEffect(() => {
+        socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
+
+        socket.current.on('connect', () => {
+            socket.current.emit('player', {
+                roomID: props.location.state.roomID,
+                name: props.location.state.playerName,
+                id: socket.current.id
+            });
+        });
+
+        socket.current.on('allUsers', (players) => {
+            setCurrentPlayers(players);
+        });
+
+        window.addEventListener("beforeunload", () => {
+            socket.current.emit('remove', {
+                roomID: props.location.state.roomID,
+                id: socket.current.id
+            });
+        });
+
+    }, []);
 
     const initializeGame = (numberOfRounds, time) => {
         setNumberOfRounds(numberOfRounds);
@@ -38,9 +66,9 @@ function WaitingRoom(props) {
                         <h2>{t('Settings')}</h2>
                         <Settings language={props.location.state.language} initializeGame={initializeGame} />
                     </div>
-                    <PlayerList playerName={props.location.state.playerName} inGame={false} />
+                    <PlayerList currentPlayers={currentPlayers} inGame={false} />
                 </div>
-                <Invitation roomLink={props.location.state.roomLink} />
+                <Invitation roomLink={process.env.REACT_APP_MIMICA_URL + `?room=${props.location.state.roomID}`} />
             </div>
         );
 }
