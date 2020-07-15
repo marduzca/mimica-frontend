@@ -11,9 +11,10 @@ function Player(props) {
         <li className="player" key={props.name}>
             {props.inGame ? <span data-testid="position-text">#{props.position}</span> : null}
             <span>
-                <p>{props.name}</p>
-                {props.inGame ? <p data-testid="points-text">{t('Points', {points: props.points})}</p> : null}
+                {props.isHost ? <img id="crown" alt="Host crown" src={require("./crown.png")} /> : null}
+                <span>{props.name}</span>
             </span>
+            {props.inGame ? <p data-testid="points-text">{t('Points', { points: props.points })}</p> : null}
         </li>
     );
 }

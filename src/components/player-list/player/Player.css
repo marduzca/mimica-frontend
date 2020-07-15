@@ -11,3 +11,10 @@
 .player p {
     display: block;
 }
+
+.player #crown {
+    width: 30px;
+    display: inline-block;
+    margin: auto 10px;
+    vertical-align: middle;
+}
