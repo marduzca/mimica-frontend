@@ -41,7 +41,7 @@ function WaitingRoom(props) {
             });
         });
 
-    }, []);
+    }, [props.location.state.playerName, props.location.state.roomID]);
 
     const initializeGame = (numberOfRounds, time) => {
         setNumberOfRounds(numberOfRounds);
