@@ -20,7 +20,7 @@ function Navbar(props) {
                 <ul>
                     <Link to="/">
                         <li className="primary-navbar">
-                            <img id="logo" alt="Mimica logo" src={require("../favicon.ico")} />
+                            <img id="logo" alt="Mimica logo" src={require("../mime.png")} />
                             <span>{t('Home')}</span>
                         </li>
                     </Link>
