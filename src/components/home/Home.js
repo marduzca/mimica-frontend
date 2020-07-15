@@ -12,19 +12,20 @@ function Home(props) {
     const [roomID, setRoomID] = useState('');
     const [auth, setAuth] = useState(false);
     const [nameIsEmpty, setNameIsEmpty] = useState(false);
-    const gameURL = 'mimica.herokuapp.com/?room=';
+    const [isHost, setIsHost] = useState(true);
 
     useEffect(() => {
         const query = new URLSearchParams(props.location.search);
         for (let param of query.entries()) {
             if (param[0] === 'room') {
+                setIsHost(false);
                 setRoomID(param[1]);
             }
         }
     }, [props.location.search]);
 
     const handleLogin = () => {
-        if (!roomID) {
+        if (isHost) {
             setRoomID(generateRandomString());
         }
 
@@ -50,7 +51,7 @@ function Home(props) {
             state: {
                 playerName: name,
                 language: language,
-                roomLink: gameURL + roomID
+                roomID: roomID
             }
         }} />
         : (
@@ -59,12 +60,14 @@ function Home(props) {
                 <div className="login">
                     <div className="input-fields">
                         <input id="name" type="text" placeholder={t('Your name')} value={name} onChange={handleNameChange} />
-                        <select id="language" defaultValue="English" onChange={handleLanguageChange}>
-                            <option value={t('English')}>{t('English')}</option>
-                            <option value={t('Spanish')}>{t('Spanish')}</option>
-                        </select>
+                        { isHost ?
+                            <select id="language" defaultValue="English" onChange={handleLanguageChange}>
+                                <option value={t('English')}>{t('English')}</option>
+                                <option value={t('Spanish')}>{t('Spanish')}</option>
+                            </select>
+                            : null }
                     </div>
-                    <button id="playButton" onClick={handleLogin}>{t('Play')}</button>
+                    <button id="playButton" onClick={handleLogin}>{ !roomID ? t('Play') : t('Join') }</button>
                     {nameIsEmpty ? <p className='error' role='alert'>{t('You need to enter a name!')}</p> : null}
                 </div>
             </div>
