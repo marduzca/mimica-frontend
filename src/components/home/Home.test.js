@@ -1,7 +1,8 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import userEvent from '@testing-library/user-event';
 
 import Home from './Home';
 
@@ -9,19 +10,15 @@ test('User can login and go to waiting-room page', () => {
     const history = createMemoryHistory();
     render(
         <Router history={history}>
-            <Home location={{ search:  'mimica.herokuapp.com/'}} />
+            <Home location={{ search: '' }} />
         </Router>
     );
 
     const nameInput = screen.getByPlaceholderText('Your name');
-    fireEvent.change(nameInput, {
-        target: {
-            value: 'Miguel'
-        }
-    });
+    userEvent.type(nameInput, 'Miguel');
 
     const playButton = screen.getByRole('button', { name: 'Play' });
-    fireEvent.click(playButton);
+    userEvent.click(playButton);
 
     expect(history.location.pathname).toBe('/waiting-room');
     expect(history.location.state.playerName).toBe('Miguel');
@@ -29,10 +26,22 @@ test('User can login and go to waiting-room page', () => {
 });
 
 test('User cannot login with empty name', () => {
-    render(<Home location={{ search:  'mimica.herokuapp.com/'}} />);
+    render(<Home location={{ search: '' }} />);
 
     const playButton = screen.getByRole('button', { name: 'Play' });
-    fireEvent.click(playButton);
+    userEvent.click(playButton);
 
     expect(screen.getByRole('alert')).toBeTruthy();
+});
+
+test('Button displays correct button message when use is host', () => {
+    render(<Home location={{ search: '' }} />);
+
+    expect(screen.getByRole('button', { name: 'Play' })).toBeTruthy();
+});
+
+test('Button displays correct button message when use is NOT host', () => {
+    render(<Home location={{ search: '?room=p9bm6uwfr8c' }} />);
+
+    expect(screen.getByRole('button', { name: 'Join' })).toBeTruthy();
 });
