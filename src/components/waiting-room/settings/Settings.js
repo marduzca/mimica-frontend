@@ -28,18 +28,31 @@ function Settings(props) {
         <div>
             <div className="settings">
                 <label htmlFor="rounds">{t('Rounds')}</label>
-                <select id="rounds" data-testid="round-select" defaultValue="3" onChange={handleNumberOfRoundsChange} disabled={!props.isHost}>
+                <select className={!props.isHost ? 'not-clickable' : ''}
+                    id="rounds"
+                    defaultValue="3"
+                    onChange={handleNumberOfRoundsChange}
+                    disabled={!props.isHost}>
                     {roundsOptions.map(rounds => <option key={rounds} value={rounds}>{rounds}</option>)};
                 </select>
 
                 <label htmlFor="time">{t('Time in seconds')}</label>
-                <select id="time" data-testid="time-select" defaultValue="80" onChange={handleTimeChange} disabled={!props.isHost}>
+                <select className={!props.isHost ? 'not-clickable' : ''}
+                    id="time"
+                    defaultValue="80"
+                    onChange={handleTimeChange}
+                    disabled={!props.isHost}>
                     {timeOptions.map(time => <option key={time} value={time}>{time}</option>)};
                 </select>
 
                 <p>{t('Language', { language: props.language })}</p>
 
-                <button id="startButton" onClick={handleGameStart}>{t('Start game')}</button>
+                <button className={!props.isHost ? "not-clickable" : ""}
+                    id="startButton"
+                    onClick={handleGameStart}
+                    disabled={!props.isHost} >
+                    {t('Start game')}
+                </button>
             </div>
         </div>
     );

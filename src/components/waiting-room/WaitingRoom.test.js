@@ -70,9 +70,9 @@ test('User can start the game with custom settings', () => {
 
     );
 
-    userEvent.selectOptions(screen.getByTestId('round-select'), '5');
+    userEvent.selectOptions(screen.getByLabelText('Rounds'), '5');
 
-    userEvent.selectOptions(screen.getByTestId('time-select'), '100');
+    userEvent.selectOptions(screen.getByLabelText('Time in seconds'), '100');
 
     const startGameButton = screen.getByRole('button', { name: 'Start game' });
     fireEvent.click(startGameButton);
@@ -100,7 +100,9 @@ test('Game settings are not updateable for guests', () => {
 
     const roundOptions = screen.getByLabelText('Rounds');
     const timeOptions = screen.getByLabelText('Time in seconds');
+    const startGameButton = screen.getByRole('button', { name: 'Start game' });
 
     expect(roundOptions).toBeDisabled();
     expect(timeOptions).toBeDisabled();
+    expect(startGameButton).toBeDisabled();
 });
