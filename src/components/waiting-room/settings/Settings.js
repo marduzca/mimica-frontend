@@ -28,12 +28,12 @@ function Settings(props) {
         <div>
             <div className="settings">
                 <label htmlFor="rounds">{t('Rounds')}</label>
-                <select id="rounds" data-testid="round-select" defaultValue="3" onChange={handleNumberOfRoundsChange}>
+                <select id="rounds" data-testid="round-select" defaultValue="3" onChange={handleNumberOfRoundsChange} disabled={!props.isHost}>
                     {roundsOptions.map(rounds => <option key={rounds} value={rounds}>{rounds}</option>)};
                 </select>
 
                 <label htmlFor="time">{t('Time in seconds')}</label>
-                <select id="time" data-testid="time-select" defaultValue="80" onChange={handleTimeChange}>
+                <select id="time" data-testid="time-select" defaultValue="80" onChange={handleTimeChange} disabled={!props.isHost}>
                     {timeOptions.map(time => <option key={time} value={time}>{time}</option>)};
                 </select>
 
@@ -48,7 +48,8 @@ function Settings(props) {
 Settings.propTypes = {
     t: PropTypes.func.isRequired,
     language: PropTypes.string.isRequired,
-    initializeGame: PropTypes.func.isRequired
+    initializeGame: PropTypes.func.isRequired,
+    isHost: PropTypes.bool.isRequired
 };
 
 export default withNamespaces()(Settings);

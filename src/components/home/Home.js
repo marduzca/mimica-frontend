@@ -51,7 +51,8 @@ function Home(props) {
             state: {
                 playerName: name,
                 language: language,
-                roomID: roomID
+                roomID: roomID,
+                isHost: isHost
             }
         }} />
         : (

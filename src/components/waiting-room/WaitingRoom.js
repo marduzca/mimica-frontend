@@ -34,14 +34,16 @@ function WaitingRoom(props) {
             setCurrentPlayers(players);
         });
 
+    }, [props.location.state.playerName, props.location.state.roomID]);
+
+    useEffect(() => {
         window.addEventListener('unload', () => {
             socket.current.emit('remove', {
                 roomID: props.location.state.roomID,
                 id: socket.current.id
             });
         });
-
-    }, [props.location.state.playerName, props.location.state.roomID]);
+    }, [props.location.state.roomID])
 
     const initializeGame = (numberOfRounds, time) => {
         setNumberOfRounds(numberOfRounds);
@@ -64,7 +66,7 @@ function WaitingRoom(props) {
                 <div className="main-container">
                     <div>
                         <h2>{t('Settings')}</h2>
-                        <Settings language={props.location.state.language} initializeGame={initializeGame} />
+                        <Settings language={props.location.state.language} initializeGame={initializeGame} isHost={props.location.state.isHost} />
                     </div>
                     <PlayerList currentPlayers={currentPlayers} inGame={false} />
                 </div>
@@ -78,7 +80,8 @@ WaitingRoom.propTypes = {
     location: PropTypes.shape({
         state: PropTypes.shape({
             playerName: PropTypes.string.isRequired,
-            language: PropTypes.string.isRequired
+            language: PropTypes.string.isRequired,
+            isHost: PropTypes.bool.isRequired
         })
     })
 };
