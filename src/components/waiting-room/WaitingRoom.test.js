@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Router } from 'react-router-dom';
+import { Router, BrowserRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
 import WaitingRoom from './WaitingRoom';
@@ -80,4 +80,27 @@ test('User can start the game with custom settings', () => {
     expect(history.location.pathname).toBe('/game');
     expect(history.location.state.time).toBe(100);
     expect(history.location.state.numberOfRounds).toBe(5);
+});
+
+test('Game settings are not updateable for guests', () => {
+    render(
+        <BrowserRouter>
+            <WaitingRoom location={
+                {
+                    state: {
+                        playerName: 'Miguel',
+                        language: 'English',
+                        roomLink: 'https://mimica.com/?xweLh250oNmm',
+                        isHost: false
+                    }
+                }
+            } />
+        </BrowserRouter>
+    );
+
+    const roundOptions = screen.getByLabelText('Rounds');
+    const timeOptions = screen.getByLabelText('Time in seconds');
+
+    expect(roundOptions).toBeDisabled();
+    expect(timeOptions).toBeDisabled();
 });
