@@ -13,7 +13,8 @@ test('Elements (language and link) passed from home page are displayed', () => {
                 state: {
                     playerName: 'Miguel',
                     language: 'English',
-                    roomID: 'xweLh250oNmm'
+                    roomID: 'xweLh250oNmm',
+                    isHost: true
                 }
             }
         } />
@@ -32,7 +33,8 @@ test('User can start the game with default settings', () => {
                     state: {
                         playerName: 'Miguel',
                         language: 'English',
-                        roomLink: 'https://mimica.com/?xweLh250oNmm'
+                        roomLink: 'https://mimica.com/?xweLh250oNmm',
+                        isHost: true
                     }
                 }
             } />
@@ -58,7 +60,8 @@ test('User can start the game with custom settings', () => {
                     state: {
                         playerName: 'Miguel',
                         language: 'English',
-                        roomLink: 'https://mimica.com/?xweLh250oNmm'
+                        roomLink: 'https://mimica.com/?xweLh250oNmm',
+                        isHost: true
                     }
                 }
             } />
