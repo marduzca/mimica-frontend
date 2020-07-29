@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 
 import i18n from '../../../i18n';
@@ -14,16 +13,20 @@ function Navbar(props) {
         i18n.changeLanguage(i18n.language === 'en' ? 'es' : 'en');
     }
 
+    function redirectToHomeWithRefresh(){ 
+        window.location.replace('/');
+    }
+
     return (
         <header className="App-header">
             <nav>
                 <ul>
-                    <Link to="/">
+                    <div onClick={ redirectToHomeWithRefresh }>
                         <li className="primary-navbar">
                             <img id="logo" alt="Mimica logo" src={require("../mime.png")} />
                             <span>{t('Home')}</span>
                         </li>
-                    </Link>
+                    </div>
                     <div className="secondary-navbar">
                         <li>
                             <button id="flag" data-testid="language-button" onClick={handleLanguageChange}>
