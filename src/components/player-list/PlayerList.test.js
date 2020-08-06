@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 
 import PlayerList from './PlayerList';
 
@@ -17,4 +17,22 @@ test('Player list doesn\'t display position and points in waiting room', () => {
     expect(screen.queryByTestId('points-text')).not.toBeInTheDocument();
 });
 
+test('Player list properly shows who is host and who is not', () => {
+    render(<PlayerList currentPlayers={
+        [{
+            name: 'Miguel',
+            host: true
+        },
+        {
+            name: 'Friend',
+            host: false
+        }]
+    } inGame={false} />);
+
+    const hostPlayer = screen.getByTestId(/miguel/i);
+    const nonHostPlayer = screen.getByTestId(/friend/i);
+
+    expect(within(hostPlayer).queryByAltText(/Host/i)).toBeInTheDocument();
+    expect(within(nonHostPlayer).queryByAltText(/Host/i)).not.toBeInTheDocument();
+});
 

@@ -25,10 +25,7 @@ function WaitingRoom(props) {
     const socket = useRef();
 
     useEffect(() => {
-        const url = process.env.NODE_ENV ==='test' ? '' : process.env.REACT_APP_MIMICA_BACKEND_URL;
-
-        // socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
-        socket.current = io.connect(url);
+        socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
 
         socket.current.on('connect', () => {
             socket.current.emit('newPlayer', {
