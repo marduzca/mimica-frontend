@@ -15,7 +15,7 @@ afterAll(() => {
 });
 
 test('Right value is copied to the clipboard', () => {
-    const roomLink = 'https://mimica.com/?xweLh250oNmm';
+    const roomLink = 'http://mimica.herokuapp.com/?room=xweLh250oNmm';
     render(<Invitation roomLink={roomLink} />);
 
     const copyButton = screen.getByRole('button', { name: 'Copy' });

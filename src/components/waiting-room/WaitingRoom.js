@@ -15,12 +15,20 @@ function WaitingRoom(props) {
     const [startGame, setStartGame] = useState(false);
     const [numberOfRounds, setNumberOfRounds] = useState(3);
     const [time, setTime] = useState(80);
-    const [currentPlayers, setCurrentPlayers] = useState([]);
+    const [currentPlayers, setCurrentPlayers] = useState(
+        [{
+            name: props.location.state.playerName,
+            host: props.location.state.isHost
+        }]
+    );
 
     const socket = useRef();
 
     useEffect(() => {
-        socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
+        const url = process.env.NODE_ENV ==='test' ? '' : process.env.REACT_APP_MIMICA_BACKEND_URL;
+
+        // socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
+        socket.current = io.connect(url);
 
         socket.current.on('connect', () => {
             socket.current.emit('newPlayer', {
