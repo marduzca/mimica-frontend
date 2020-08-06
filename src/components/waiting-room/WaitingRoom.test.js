@@ -3,8 +3,6 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Router, BrowserRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
-import socketIOClient from 'socket.io-client';
-import MockedSocket from 'socket.io-mock';
 
 import WaitingRoom from './WaitingRoom';
 
