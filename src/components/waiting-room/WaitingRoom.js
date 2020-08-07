@@ -13,6 +13,7 @@ import './WaitingRoom.css';
 function WaitingRoom(props) {
     const { t } = props;
     const [startGame, setStartGame] = useState(false);
+    const [language, setLanguage] = useState(props.location.state.language);
     const [numberOfRounds, setNumberOfRounds] = useState(3);
     const [time, setTime] = useState(80);
     const [currentPlayers, setCurrentPlayers] = useState(
@@ -33,6 +34,13 @@ function WaitingRoom(props) {
         socket.on('currentPlayers', (players) => {
             setCurrentPlayers(players);
         });
+        
+        socket.on('startGame', (gameSettings) => {
+            setLanguage(gameSettings.language);
+            setNumberOfRounds(gameSettings.numberOfRounds);
+            setTime(gameSettings.time);
+            setStartGame(true);
+        });
 
     }, [props.location.state.playerName, props.location.state.roomID]);
 
@@ -46,6 +54,13 @@ function WaitingRoom(props) {
     }, [props.location.state.roomID])
 
     const initializeGame = (numberOfRounds, time) => {
+        socket.emit('startGame', {
+            roomID: props.location.state.roomID,
+            language: language,
+            numberOfRounds: numberOfRounds,
+            time: time
+        });
+        
         setNumberOfRounds(numberOfRounds);
         setTime(time);
         setStartGame(true);
@@ -66,7 +81,7 @@ function WaitingRoom(props) {
                 <div className="main-container">
                     <div>
                         <h2>{t('Settings')}</h2>
-                        <Settings language={props.location.state.language} initializeGame={initializeGame} isHost={props.location.state.isHost} />
+                        <Settings language={language} initializeGame={initializeGame} isHost={props.location.state.isHost} />
                     </div>
                     <PlayerList currentPlayers={currentPlayers} inGame={false} />
                 </div>
