@@ -46,10 +46,16 @@ test('User can start the game with default settings', () => {
     fireEvent.click(startGameButton);
 
     expect(history.location.pathname).toBe('/game');
-    expect(history.location.state.playerName).toBe('Miguel');
     expect(history.location.state.language).toBe('English');
     expect(history.location.state.time).toBe(80);
     expect(history.location.state.numberOfRounds).toBe(3);
+    expect(history.location.state.currentPlayers).toEqual(
+        [{
+            id: 'provisionalID',
+            name: 'Miguel',
+            host: true
+        }]
+    );
 });
 
 test('User can start the game with custom settings', () => {

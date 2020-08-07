@@ -17,6 +17,7 @@ function WaitingRoom(props) {
     const [time, setTime] = useState(80);
     const [currentPlayers, setCurrentPlayers] = useState(
         [{
+            id: 'provisionalID',
             name: props.location.state.playerName,
             host: props.location.state.isHost
         }]
@@ -54,7 +55,7 @@ function WaitingRoom(props) {
         <Redirect to={{
             pathname: "/game",
             state: {
-                playerName: props.location.state.playerName,
+                currentPlayers: currentPlayers,
                 language: props.location.state.language,
                 numberOfRounds: numberOfRounds,
                 time: time

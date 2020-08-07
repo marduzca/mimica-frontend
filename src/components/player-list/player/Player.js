@@ -8,7 +8,7 @@ function Player(props) {
     const { t } = props;
 
     return (
-        <li className="player" key={props.name} data-testid={`${props.name}-field`}>
+        <li className="player" key={props.key} data-testid={`${props.name}-field`}>
             {props.inGame ? <span data-testid="position-text">#{props.position}</span> : null}
             <span>
                 {props.isHost ? <img id="crown" alt="Host crown" src={require("./crown.png")} /> : null}

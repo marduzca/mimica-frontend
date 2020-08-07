@@ -6,10 +6,12 @@ import PlayerList from './PlayerList';
 test('Player list displays all players', () => {
     render(<PlayerList currentPlayers={
         [{
+            id: 'DyybbbP40IUqduC8AAAT',
             name: 'Miguel',
             host: true
         },
         {
+            id: 'e3yADVqJ_HEhHPzuAAAU',
             name: 'Friend',
             host: false
         }]
@@ -22,10 +24,12 @@ test('Player list displays all players', () => {
 test('Player list properly shows who is host and who is not', () => {
     render(<PlayerList currentPlayers={
         [{
+            id: 'DyybbbP40IUqduC8AAAT',
             name: 'Miguel',
             host: true
         },
         {
+            id: 'e3yADVqJ_HEhHPzuAAAU',
             name: 'Friend',
             host: false
         }]
@@ -39,14 +43,25 @@ test('Player list properly shows who is host and who is not', () => {
 });
 
 test('Player list displays position and points during game', () => {
-    render(<PlayerList currentPlayers={[{ name: 'Miguel', host: true }]} inGame={true} />);
-
+    render(<PlayerList currentPlayers={
+        [{
+            id: 'DyybbbP40IUqduC8AAAT',
+            name: 'Miguel',
+            host: true
+        }]
+    } inGame={true} />);
     expect(screen.getAllByTestId('position-text')[0]).toBeInTheDocument();
     expect(screen.getAllByTestId('points-text')[0]).toBeInTheDocument();
 });
 
 test('Player list doesn\'t display position and points in waiting room', () => {
-    render(<PlayerList currentPlayers={[{ name: 'Miguel', host: true }]} inGame={false} />);
+    render(<PlayerList currentPlayers={
+        [{
+            id: 'DyybbbP40IUqduC8AAAT',
+            name: 'Miguel',
+            host: true
+        }]
+    } inGame={false} />);
 
     expect(screen.queryByTestId('position-text')).not.toBeInTheDocument();
     expect(screen.queryByTestId('points-text')).not.toBeInTheDocument();

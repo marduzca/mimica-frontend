@@ -10,7 +10,7 @@ function PlayerList(props) {
     const fillList = () => {
         return props.currentPlayers.map(player => {
             return (
-                <Player key={player.name} name={player.name} isHost={player.host} points={800} position={1} inGame={props.inGame} />
+                <Player key={player.id} name={player.name} isHost={player.host} points={800} position={1} inGame={props.inGame} />
             )
         });
     }
