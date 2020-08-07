@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
-import io from 'socket.io-client';
 
 import Settings from './settings/Settings';
 import Invitation from './invitation/Invitation';
 import PlayerList from '../player-list/PlayerList';
+import socket from '../../webSocket';
 
 import './WaitingRoom.css';
 
@@ -22,20 +22,14 @@ function WaitingRoom(props) {
         }]
     );
 
-    const socket = useRef();
-
     useEffect(() => {
-        socket.current = io.connect(process.env.REACT_APP_MIMICA_BACKEND_URL);
-
-        socket.current.on('connect', () => {
-            socket.current.emit('newPlayer', {
-                roomID: props.location.state.roomID,
-                name: props.location.state.playerName,
-                id: socket.current.id
-            });
+        socket.emit('newPlayer', {
+            roomID: props.location.state.roomID,
+            name: props.location.state.playerName,
+            id: socket.id
         });
 
-        socket.current.on('currentPlayers', (players) => {
+        socket.on('currentPlayers', (players) => {
             setCurrentPlayers(players);
         });
 
@@ -43,9 +37,9 @@ function WaitingRoom(props) {
 
     useEffect(() => {
         window.addEventListener('unload', () => {
-            socket.current.emit('remove', {
+            socket.emit('remove', {
                 roomID: props.location.state.roomID,
-                id: socket.current.id
+                id: socket.id
             });
         });
     }, [props.location.state.roomID])
