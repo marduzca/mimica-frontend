@@ -18,4 +18,5 @@
 
 .not-clickable {
     cursor: not-allowed;
+    opacity: 0.5;
 }

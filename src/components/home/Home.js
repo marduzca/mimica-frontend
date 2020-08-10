@@ -68,7 +68,7 @@ function Home(props) {
                             </select>
                             : null }
                     </div>
-                    <button id="playButton" onClick={handleLogin}>{ !roomID ? t('Play') : t('Join') }</button>
+                    <button id="playButton" onClick={handleLogin}>{ isHost ? t('Play') : t('Join') }</button>
                     {nameIsEmpty ? <p className='error' role='alert'>{t('You need to enter a name!')}</p> : null}
                 </div>
             </div>
