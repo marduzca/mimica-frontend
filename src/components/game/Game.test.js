@@ -1,7 +1,4 @@
 import React from 'react';
-import { render, getNodeText, screen } from '@testing-library/react';
-
-import Game from './Game';
 
 // test('Elements (number of rounds, time) passed from waiting room page are displayed', () => {
 //     const name = 'Miguel';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
+import {render, screen, within} from '@testing-library/react';
 
 import PlayerList from './PlayerList';
 
@@ -10,12 +10,12 @@ test('Player list displays all players', () => {
             name: 'Miguel',
             host: true
         },
-        {
-            id: 'e3yADVqJ_HEhHPzuAAAU',
-            name: 'Friend',
-            host: false
-        }]
-    } inGame={false} />);
+            {
+                id: 'e3yADVqJ_HEhHPzuAAAU',
+                name: 'Friend',
+                host: false
+            }]
+    } inGame={false}/>);
 
     expect(screen.getByTestId(/miguel/i)).toBeInTheDocument();
     expect(screen.getByTestId(/friend/i)).toBeInTheDocument();
@@ -28,12 +28,12 @@ test('Player list properly shows who is host and who is not', () => {
             name: 'Miguel',
             host: true
         },
-        {
-            id: 'e3yADVqJ_HEhHPzuAAAU',
-            name: 'Friend',
-            host: false
-        }]
-    } inGame={false} />);
+            {
+                id: 'e3yADVqJ_HEhHPzuAAAU',
+                name: 'Friend',
+                host: false
+            }]
+    } inGame={false}/>);
 
     const hostPlayer = screen.getByTestId(/miguel/i);
     const nonHostPlayer = screen.getByTestId(/friend/i);
@@ -49,7 +49,7 @@ test('Player list displays position and points during game', () => {
             name: 'Miguel',
             host: true
         }]
-    } inGame={true} />);
+    } inGame={true}/>);
     expect(screen.getAllByTestId('position-text')[0]).toBeInTheDocument();
     expect(screen.getAllByTestId('points-text')[0]).toBeInTheDocument();
 });
@@ -61,7 +61,7 @@ test('Player list doesn\'t display position and points in waiting room', () => {
             name: 'Miguel',
             host: true
         }]
-    } inGame={false} />);
+    } inGame={false}/>);
 
     expect(screen.queryByTestId('position-text')).not.toBeInTheDocument();
     expect(screen.queryByTestId('points-text')).not.toBeInTheDocument();

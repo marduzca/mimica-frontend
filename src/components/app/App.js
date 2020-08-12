@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import Footer from './footer/Footer';
 import Navbar from './navbar/Navbar';
@@ -11,22 +11,22 @@ import Dummy from '../dummy/Dummy';
 import './App.css';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <div className="App">
-        <Navbar />
-        <main>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/waiting-room" component={WaitingRoom} />
-            <Route path="/game" component={Game} />
-            <Route path="/dummy" component={Dummy} />
-          </Switch>
-        </main>
-        <Footer />
-      </div>
-    </BrowserRouter>
-  );
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <Navbar/>
+                <main>
+                    <Switch>
+                        <Route path="/" exact component={Home}/>
+                        <Route path="/waiting-room" component={WaitingRoom}/>
+                        <Route path="/game" component={Game}/>
+                        <Route path="/dummy" component={Dummy}/>
+                    </Switch>
+                </main>
+                <Footer/>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;

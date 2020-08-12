@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import {withNamespaces} from 'react-i18next';
 
 import './Footer.css';
 
 function Footer(props) {
-    const { t } = props;
+    const {t} = props;
 
     return (
         <footer>

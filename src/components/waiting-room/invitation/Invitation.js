@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import {withNamespaces} from 'react-i18next';
 
 import './Invitation.css';
 
 function Invitation(props) {
-    const { t } = props;
+    const {t} = props;
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(props.roomLink);

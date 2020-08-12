@@ -1,8 +1,8 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import {fireEvent, render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Router, BrowserRouter } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import {BrowserRouter, Router} from 'react-router-dom';
+import {createMemoryHistory} from 'history';
 
 import WaitingRoom from './WaitingRoom';
 
@@ -17,7 +17,7 @@ test('Elements (language and link) passed from home page are displayed', () => {
                     isHost: true
                 }
             }
-        } />
+        }/>
     );
 
     expect(screen.getByText(/Miguel/i)).toBeInTheDocument();
@@ -38,11 +38,11 @@ test('User can start the game with default settings', () => {
                         isHost: true
                     }
                 }
-            } />
+            }/>
         </Router>
     );
 
-    const startGameButton = screen.getByRole('button', { name: 'Start game' });
+    const startGameButton = screen.getByRole('button', {name: 'Start game'});
     fireEvent.click(startGameButton);
 
     expect(history.location.pathname).toBe('/game');
@@ -71,17 +71,15 @@ test('User can start the game with custom settings', () => {
                         isHost: true
                     }
                 }
-            } />
+            }/>
         </Router>
-
-
     );
 
     userEvent.selectOptions(screen.getByLabelText('Rounds'), '5');
 
     userEvent.selectOptions(screen.getByLabelText('Time in seconds'), '100');
 
-    const startGameButton = screen.getByRole('button', { name: 'Start game' });
+    const startGameButton = screen.getByRole('button', {name: 'Start game'});
     fireEvent.click(startGameButton);
 
     expect(history.location.pathname).toBe('/game');
@@ -101,13 +99,13 @@ test('Game settings are not updateable for guests', () => {
                         isHost: false
                     }
                 }
-            } />
+            }/>
         </BrowserRouter>
     );
 
     const roundOptions = screen.getByLabelText('Rounds');
     const timeOptions = screen.getByLabelText('Time in seconds');
-    const startGameButton = screen.getByRole('button', { name: 'Start game' });
+    const startGameButton = screen.getByRole('button', {name: 'Start game'});
 
     expect(roundOptions).toBeDisabled();
     expect(timeOptions).toBeDisabled();

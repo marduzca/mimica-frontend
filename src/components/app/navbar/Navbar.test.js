@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
-import { Router } from 'react-router-dom';
-import { createMemoryHistory } from 'history';
+import {fireEvent, render, screen} from '@testing-library/react';
+import {Router} from 'react-router-dom';
+import {createMemoryHistory} from 'history';
 
 import Navbar from './Navbar';
 import i18n from 'i18n';
@@ -10,7 +10,7 @@ test('Language can be switched by clicking on the flags', () => {
     const history = createMemoryHistory();
     render(
         <Router history={history}>
-            <Navbar />
+            <Navbar/>
         </Router>
     );
 

@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withNamespaces } from 'react-i18next';
+import {withNamespaces} from 'react-i18next';
 
 import './Player.css';
 
 function Player(props) {
-    const { t } = props;
+    const {t} = props;
 
     return (
         <li className="player" key={props.key} data-testid={`${props.name}-field`}>
             {props.inGame ? <span data-testid="position-text">#{props.position}</span> : null}
             <span>
-                {props.isHost ? <img id="crown" alt="Host crown" src={require("./crown.png")} /> : null}
+                {props.isHost ? <img id="crown" alt="Host crown" src={require("./crown.png")}/> : null}
                 <span>{props.name}</span>
             </span>
-            {props.inGame ? <p data-testid="points-text">{t('Points', { points: props.points })}</p> : null}
+            {props.inGame ? <p data-testid="points-text">{t('Points', {points: props.points})}</p> : null}
         </li>
     );
 }

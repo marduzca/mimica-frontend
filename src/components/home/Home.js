@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import { withNamespaces } from 'react-i18next';
+import {Redirect} from 'react-router-dom';
+import {withNamespaces} from 'react-i18next';
 
 import './Home.css';
 
 function Home(props) {
-    const { t } = props;
+    const {t} = props;
     const [name, setName] = useState('');
     const [language, setLanguage] = useState('English');
     const [roomID, setRoomID] = useState('');
@@ -54,21 +54,22 @@ function Home(props) {
                 roomID: roomID,
                 isHost: isHost
             }
-        }} />
+        }}/>
         : (
             <div>
-                <img id="logo" alt="Mimica logo" src={require("./mimica_logo.png")} />
+                <img id="logo" alt="Mimica logo" src={require("./mimica_logo.png")}/>
                 <div className="login">
                     <div className="input-fields">
-                        <input id="name" type="text" placeholder={t('Your name')} value={name} onChange={handleNameChange} />
-                        { isHost ?
+                        <input id="name" type="text" placeholder={t('Your name')} value={name}
+                               onChange={handleNameChange}/>
+                        {isHost ?
                             <select id="language" defaultValue="English" onChange={handleLanguageChange}>
                                 <option value={t('English')}>{t('English')}</option>
                                 <option value={t('Spanish')}>{t('Spanish')}</option>
                             </select>
-                            : null }
+                            : null}
                     </div>
-                    <button id="playButton" onClick={handleLogin}>{ isHost ? t('Play') : t('Join') }</button>
+                    <button id="playButton" onClick={handleLogin}>{isHost ? t('Play') : t('Join')}</button>
                     {nameIsEmpty ? <p className='error' role='alert'>{t('You need to enter a name!')}</p> : null}
                 </div>
             </div>

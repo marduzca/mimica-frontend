@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import GameBar from './gamebar/GameBar';
@@ -21,11 +21,11 @@ function Game(props) {
 
     return (
         <div className="game">
-            <GameBar time={props.location.state.time} numberOfRounds={props.location.state.numberOfRounds} />
+            <GameBar time={props.location.state.time} numberOfRounds={props.location.state.numberOfRounds}/>
             <div className="gameplay">
-                <PlayerList currentPlayers={currentPlayers} inGame={true} />
-                <VideoCamera />
-                <Chat />
+                <PlayerList currentPlayers={currentPlayers} inGame={true}/>
+                <VideoCamera/>
+                <Chat/>
             </div>
         </div>
     );
@@ -35,6 +35,7 @@ Game.propTypes = {
     location: PropTypes.shape({
         state: PropTypes.shape({
             currentPlayers: PropTypes.array.isRequired,
+            language: PropTypes.string.isRequired,
             time: PropTypes.number.isRequired,
             numberOfRounds: PropTypes.number.isRequired
         })

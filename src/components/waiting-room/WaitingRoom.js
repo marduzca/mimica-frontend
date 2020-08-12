@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import { withNamespaces } from 'react-i18next';
+import {Redirect} from 'react-router-dom';
+import {withNamespaces} from 'react-i18next';
 
 import Settings from './settings/Settings';
 import Invitation from './invitation/Invitation';
@@ -11,7 +11,7 @@ import socket from '../../webSocket';
 import './WaitingRoom.css';
 
 function WaitingRoom(props) {
-    const { t } = props;
+    const {t} = props;
     const [startGame, setStartGame] = useState(false);
     const [language, setLanguage] = useState(props.location.state.language);
     const [numberOfRounds, setNumberOfRounds] = useState(3);
@@ -34,7 +34,7 @@ function WaitingRoom(props) {
         socket.on('currentPlayers', (players) => {
             setCurrentPlayers(players);
         });
-        
+
         socket.on('startGame', (gameSettings) => {
             setLanguage(gameSettings.language);
             setNumberOfRounds(gameSettings.numberOfRounds);
@@ -51,7 +51,7 @@ function WaitingRoom(props) {
                 id: socket.id
             });
         });
-    }, [props.location.state.roomID])
+    }, [props.location.state.roomID]);
 
     const initializeGame = (numberOfRounds, time) => {
         socket.emit('startGame', {
@@ -60,11 +60,11 @@ function WaitingRoom(props) {
             numberOfRounds: numberOfRounds,
             time: time
         });
-        
+
         setNumberOfRounds(numberOfRounds);
         setTime(time);
         setStartGame(true);
-    }
+    };
 
     return startGame ?
         <Redirect to={{
@@ -75,17 +75,18 @@ function WaitingRoom(props) {
                 numberOfRounds: numberOfRounds,
                 time: time
             }
-        }} />
+        }}/>
         : (
             <div>
                 <div className="main-container">
                     <div>
                         <h2>{t('Settings')}</h2>
-                        <Settings language={language} initializeGame={initializeGame} isHost={props.location.state.isHost} />
+                        <Settings language={language} initializeGame={initializeGame}
+                                  isHost={props.location.state.isHost}/>
                     </div>
-                    <PlayerList currentPlayers={currentPlayers} inGame={false} />
+                    <PlayerList currentPlayers={currentPlayers} inGame={false}/>
                 </div>
-                <Invitation roomLink={process.env.REACT_APP_MIMICA_URL + `?room=${props.location.state.roomID}`} />
+                <Invitation roomLink={process.env.REACT_APP_MIMICA_URL + `?room=${props.location.state.roomID}`}/>
             </div>
         );
 }

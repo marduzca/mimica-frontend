@@ -5,13 +5,13 @@ nav {
     background-color: rgb(60, 129, 208);
     width: 100%;
 }
-  
+
 nav ul {
     margin: inherit;
     width: inherit;
     padding: inherit;
 }
-  
+
 nav li {
     display: inline-block;
     font-weight: 700;
@@ -19,22 +19,22 @@ nav li {
     font-size: 20px;
     margin: 0 20px;
 }
-  
+
 nav ul :hover {
     text-decoration: underline;
 }
-  
+
 nav #logo {
     display: inline-block;
     width: 40px;
     margin: 5px 0;
     vertical-align: middle;
 }
-  
+
 nav .primary-navbar {
     float: left;
 }
-  
+
 nav .secondary-navbar {
     float: right;
 }
