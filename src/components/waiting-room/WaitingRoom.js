@@ -13,7 +13,6 @@ import './WaitingRoom.css';
 function WaitingRoom(props) {
     const {t} = props;
     const [startGame, setStartGame] = useState(false);
-    const [language, setLanguage] = useState(props.location.state.language);
     const [numberOfRounds, setNumberOfRounds] = useState(3);
     const [time, setTime] = useState(80);
     const [currentPlayers, setCurrentPlayers] = useState(
@@ -23,10 +22,11 @@ function WaitingRoom(props) {
             host: props.location.state.isHost
         }]
     );
+    const [roomID, setRoomID] = useState(props.location.state.roomID);
 
     useEffect(() => {
         socket.emit('newPlayer', {
-            roomID: props.location.state.roomID,
+            roomID: roomID,
             name: props.location.state.playerName,
             id: socket.id
         });
@@ -36,27 +36,26 @@ function WaitingRoom(props) {
         });
 
         socket.on('startGame', (gameSettings) => {
-            setLanguage(gameSettings.language);
             setNumberOfRounds(gameSettings.numberOfRounds);
             setTime(gameSettings.time);
             setStartGame(true);
         });
 
-    }, [props.location.state.playerName, props.location.state.roomID]);
+    }, [props.location.state.playerName, roomID]);
 
     useEffect(() => {
         window.addEventListener('unload', () => {
             socket.emit('remove', {
-                roomID: props.location.state.roomID,
+                roomID: roomID,
                 id: socket.id
             });
         });
-    }, [props.location.state.roomID]);
+    }, [roomID]);
 
     const initializeGame = (numberOfRounds, time) => {
         socket.emit('startGame', {
-            roomID: props.location.state.roomID,
-            language: language,
+            roomID: roomID,
+            language: props.location.state.language,
             numberOfRounds: numberOfRounds,
             time: time
         });
@@ -73,7 +72,9 @@ function WaitingRoom(props) {
                 currentPlayers: currentPlayers,
                 language: props.location.state.language,
                 numberOfRounds: numberOfRounds,
-                time: time
+                time: time,
+                isHost: props.location.state.isHost,
+                roomID: roomID
             }
         }}/>
         : (
@@ -81,12 +82,12 @@ function WaitingRoom(props) {
                 <div className="main-container">
                     <div>
                         <h2>{t('Settings')}</h2>
-                        <Settings language={language} initializeGame={initializeGame}
+                        <Settings language={props.location.state.language} initializeGame={initializeGame}
                                   isHost={props.location.state.isHost}/>
                     </div>
                     <PlayerList currentPlayers={currentPlayers} inGame={false}/>
                 </div>
-                <Invitation roomLink={process.env.REACT_APP_MIMICA_URL + `?room=${props.location.state.roomID}`}/>
+                <Invitation roomLink={process.env.REACT_APP_MIMICA_URL + `?room=${roomID}`}/>
             </div>
         );
 }
