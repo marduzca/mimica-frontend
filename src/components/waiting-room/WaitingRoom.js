@@ -22,11 +22,11 @@ function WaitingRoom(props) {
             host: props.location.state.isHost
         }]
     );
-    const [roomID, setRoomID] = useState(props.location.state.roomID);
+    // const [roomID, setRoomID] = useState(props.location.state.roomID);
 
     useEffect(() => {
         socket.emit('newPlayer', {
-            roomID: roomID,
+            roomID: props.location.state.roomID,
             name: props.location.state.playerName,
             id: socket.id
         });
@@ -41,20 +41,20 @@ function WaitingRoom(props) {
             setStartGame(true);
         });
 
-    }, [props.location.state.playerName, roomID]);
+    }, [props.location.state.playerName, props.location.state.roomID]);
 
     useEffect(() => {
         window.addEventListener('unload', () => {
             socket.emit('remove', {
-                roomID: roomID,
+                roomID: props.location.state.roomID,
                 id: socket.id
             });
         });
-    }, [roomID]);
+    }, [props.location.state.roomID]);
 
     const initializeGame = (numberOfRounds, time) => {
         socket.emit('startGame', {
-            roomID: roomID,
+            roomID: props.location.state.roomID,
             language: props.location.state.language,
             numberOfRounds: numberOfRounds,
             time: time
@@ -74,7 +74,7 @@ function WaitingRoom(props) {
                 numberOfRounds: numberOfRounds,
                 time: time,
                 isHost: props.location.state.isHost,
-                roomID: roomID
+                roomID: props.location.state.roomID
             }
         }}/>
         : (
@@ -87,7 +87,7 @@ function WaitingRoom(props) {
                     </div>
                     <PlayerList currentPlayers={currentPlayers} inGame={false}/>
                 </div>
-                <Invitation roomLink={process.env.REACT_APP_MIMICA_URL + `?room=${roomID}`}/>
+                <Invitation roomLink={process.env.REACT_APP_MIMICA_URL + `?room=${props.location.state.roomID}`}/>
             </div>
         );
 }

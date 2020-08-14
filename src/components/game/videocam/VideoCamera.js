@@ -23,9 +23,12 @@ const Video = (props) => {
 let client = {}
 
 function VideoCamera(props) {
+    // eslint-disable-next-line no-unused-vars
     const [peers, setPeers] = useState([]);
     const userVideo = useRef();
+    // eslint-disable-next-line no-unused-vars
     const peersRef = useRef([]);
+    // eslint-disable-next-line no-unused-vars
     const [roomID, setRoomID] = useState('f7f9df');
 
     useEffect(() => {
@@ -170,6 +173,7 @@ function VideoCamera(props) {
         }
     }, [props.host, roomID]);
 
+    // eslint-disable-next-line no-unused-vars
     const createPeer = (userToSignal, callerID, stream) => {
         let peer;
 
@@ -195,6 +199,7 @@ function VideoCamera(props) {
         return peer;
     };
 
+    // eslint-disable-next-line no-unused-vars
     const addPeer = (incomingSignal, callerID, stream) => {
 
         let peer;

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
-import GameBar from './gamebar/GameBar';
-import PlayerList from '../player-list/PlayerList';
+// import GameBar from './gamebar/GameBar';
+// import PlayerList from '../player-list/PlayerList';
 import VideoCamera from './videocam/VideoCamera';
 import Chat from './chat/Chat';
 import socket from '../../webSocket';
@@ -27,6 +27,7 @@ function Game(props) {
 
     useEffect(() => {
         socket.on('currentPlayers', (players) => {
+            setIsHost(true);
             // setCurrentPlayers(players);
         });
 
