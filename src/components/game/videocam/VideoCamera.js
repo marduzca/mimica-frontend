@@ -27,7 +27,7 @@ function VideoCamera(props) {
 
     useEffect(() => {
         console.log(props.host);
-
+        setRoomID('f7f9df');
 
         const setUpPeer = (host, roomID, streamFormat) => {
             navigator.mediaDevices.getUserMedia(streamFormat).then(stream => {
