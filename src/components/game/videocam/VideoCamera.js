@@ -23,42 +23,98 @@ function VideoCamera(props) {
     const [peers, setPeers] = useState([]);
     const userVideo = useRef();
     const peersRef = useRef([]);
-    const [roomID, setRoomID] = useState('f7f9df');
+    // const [roomID, setRoomID] = useState('f7f9df');
 
     useEffect(() => {
-        console.log(props.host);
-        setRoomID('f7f9df');
+            console.log(props.host);
+            console.log(props.currentPlayers);
+            // setRoomID('f7f9df');
 
-        const setUpPeer = (host, roomID, streamFormat) => {
-            navigator.mediaDevices.getUserMedia(streamFormat).then(stream => {
-                if (host) {
-                    userVideo.current.srcObject = stream;
-                }
+            if (props.host) {
+                console.log('HOST PATH');
+                navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(stream => {
+                        if (props.host) {
+                            userVideo.current.srcObject = stream;
+                        }
 
-                socket.emit("join room", roomID);
+                        // socket.emit("join room", props.roomID);
+
+                        console.log('JOINED ROOM');
+                        console.log('MY ID: ' + socket.id);
+
+                        // const peers = [];
+                        props.currentPlayers.forEach(player => {
+                            if (player.id !== socket.id && !peersRef.current.find(p => p.peerID === player.id)) {
+                                console.log('CREATE PEER FOR ' + player.id);
+                                const peer = createPeer(player.id, socket.id, stream);
+                                peersRef.current.push({
+                                    peerID: player.id,
+                                    peer,
+                                });
+                                peers.push(peer);
+                                setPeers(peers);
+                            }
+                        });
+
+                        socket.on('user left', player => {
+                            console.log('USER LEFT WITH ID ' + player.id);
+                            const item = peersRef.current.find(p => p.peerID === player.id);
+
+                            item.peer.destroy();
+                            peersRef.current.splice(peersRef.current.indexOf(item), 1);
+                            setPeers(peers.splice(peers.indexOf(item.peer), 1));
+                        })
+
+                        socket.on("user joined", payload => {
+                            console.log('NEW USER JOINED');
+                            console.log('ADDED PEER FOR ' + payload.callerID);
+
+                            const peer = addPeer(payload.signal, payload.callerID, stream);
+                            peersRef.current.push({
+                                peerID: payload.callerID,
+                                peer,
+                            });
+
+                            setPeers(users => [...users, peer]);
+                        });
+
+                        socket.on("receiving returned signal", payload => {
+                            console.log('GOT ANSWER FROM PEER');
+                            const item = peersRef.current.find(p => p.peerID === payload.id);
+
+                            console.log('SIGNAL PEER');
+
+                            item.peer.signal(payload.signal);
+                        });
+
+                        return stream;
+                    }
+                );
+            } else {
+                console.log('NON-HOST PATH');
 
                 console.log('JOINED ROOM');
                 console.log('MY ID: ' + socket.id);
 
-                socket.on("all users", users => {
-                    const peers = [];
-                    users.forEach(userID => {
-                        console.log('CREATE PEER FOR ' + userID);
-                        const peer = createPeer(userID, socket.id, stream);
-                        peersRef.current.push({
-                            peerID: userID,
-                            peer,
-                        });
-                        peers.push(peer);
-                    });
-                    setPeers(peers);
-                });
+                // socket.on("all users", users => {
+                //     const peers = [];
+                //     users.forEach(userID => {
+                //         console.log('CREATE PEER FOR ' + userID);
+                //         const peer = createPeer(userID, socket.id, stream);
+                //         peersRef.current.push({
+                //             peerID: userID,
+                //             peer,
+                //         });
+                //         peers.push(peer);
+                //     });
+                //     setPeers(peers);
+                // });
 
                 socket.on("user joined", payload => {
                     console.log('NEW USER JOINED');
                     console.log('ADDED PEER FOR ' + payload.callerID);
 
-                    const peer = addPeer(payload.signal, payload.callerID, stream);
+                    const peer = addPeer(payload.signal, payload.callerID);
                     peersRef.current.push({
                         peerID: payload.callerID,
                         peer,
@@ -66,30 +122,12 @@ function VideoCamera(props) {
 
                     setPeers(users => [...users, peer]);
                 });
-
-                socket.on("receiving returned signal", payload => {
-                    console.log('GOT ANSWER FROM PEER');
-                    const item = peersRef.current.find(p => p.peerID === payload.id);
-
-                    console.log('SIGNAL PEER');
-
-                    item.peer.signal(payload.signal);
-                });
-
-                return stream;
-            });
-        };
-
-        if (props.host) {
-            console.log('HOST PATH');
-
-            setUpPeer(true, roomID, {video: true, audio: false});
-        } else {
-            console.log('NON HOST PATH');
-
-            setUpPeer(false, roomID, {video: {width: 1, height: 1}});
+            }
         }
-    }, [props.host, roomID]);
+        ,
+        [peers, props.currentPlayers, props.host, props.roomID]
+    )
+    ;
 
     const createPeer = (userToSignal, callerID, stream) => {
         const peer = new Peer({

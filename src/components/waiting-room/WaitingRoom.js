@@ -34,11 +34,15 @@ function WaitingRoom(props) {
             setCurrentPlayers(players);
         });
 
-        socket.on('startGame', (gameSettings) => {
+        socket.once('startGame', (gameSettings) => {
             setNumberOfRounds(gameSettings.numberOfRounds);
             setTime(gameSettings.time);
             setStartGame(true);
         });
+
+        return function cleanup() {
+            socket.removeAllListeners();
+        }
 
     }, [props.location.state.playerName, props.location.state.roomID]);
 

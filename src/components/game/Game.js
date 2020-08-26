@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 // import GameBar from './gamebar/GameBar';
@@ -10,7 +10,8 @@ import socket from '../../webSocket';
 import './Game.css';
 
 function Game(props) {
-    // const [currentPlayers, setCurrentPlayers] = useState(props.location.state.currentPlayers);
+    const [currentPlayers, setCurrentPlayers] = useState(props.location.state.currentPlayers);
+    const [leaveRoom, setLeaveRoom] = useState(false);
     const isHost = () => {
         const query = new URLSearchParams(props.location.search);
 
@@ -26,18 +27,23 @@ function Game(props) {
 
     useEffect(() => {
         socket.on('currentPlayers', (players) => {
-            // setCurrentPlayers(players);
+            console.log(currentPlayers);
+            setCurrentPlayers(players);
         });
 
-    }, []);
+        return function cleanup() {
+            socket.removeAllListeners();
+        }
+
+    }, [currentPlayers]);
 
     return (
         <div className="game">
             {/*<GameBar time={props.location.state.time} numberOfRounds={props.location.state.numberOfRounds}/>*/}
             <div className="gameplay">
                 {/*<PlayerList currentPlayers={currentPlayers} inGame={true}/>*/}
-                {/*<VideoCamera host={props.location.state.isHost} currentPlayers={currentPlayers} roomID={props.location.state.roomID} />*/}
-                <VideoCamera host={isHost()} />
+                <VideoCamera host={props.location.state.isHost} currentPlayers={currentPlayers} roomID={props.location.state.roomID} />
+                {/*<VideoCamera host={isHost()} />*/}
                 <Chat/>
             </div>
         </div>
