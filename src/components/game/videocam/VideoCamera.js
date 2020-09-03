@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import PropTypes from 'prop-types';
 import Peer from 'simple-peer';
 
 import socket from "../../../webSocket";
@@ -23,12 +24,10 @@ function VideoCamera(props) {
     const [peers, setPeers] = useState([]);
     const userVideo = useRef();
     const peersRef = useRef([]);
-    // const [roomID, setRoomID] = useState('f7f9df');
 
     useEffect(() => {
             console.log(props.host);
             console.log(props.currentPlayers);
-            // setRoomID('f7f9df');
 
             if (props.host) {
                 console.log('HOST PATH');
@@ -36,13 +35,9 @@ function VideoCamera(props) {
                         if (props.host) {
                             userVideo.current.srcObject = stream;
                         }
-
-                        // socket.emit("join room", props.roomID);
-
                         console.log('JOINED ROOM');
                         console.log('MY ID: ' + socket.id);
 
-                        // const peers = [];
                         props.currentPlayers.forEach(player => {
                             if (player.id !== socket.id && !peersRef.current.find(p => p.peerID === player.id)) {
                                 console.log('CREATE PEER FOR ' + player.id);
@@ -95,20 +90,6 @@ function VideoCamera(props) {
 
                 console.log('JOINED ROOM');
                 console.log('MY ID: ' + socket.id);
-
-                // socket.on("all users", users => {
-                //     const peers = [];
-                //     users.forEach(userID => {
-                //         console.log('CREATE PEER FOR ' + userID);
-                //         const peer = createPeer(userID, socket.id, stream);
-                //         peersRef.current.push({
-                //             peerID: userID,
-                //             peer,
-                //         });
-                //         peers.push(peer);
-                //     });
-                //     setPeers(peers);
-                // });
 
                 socket.on("user joined", payload => {
                     console.log('NEW USER JOINED');
@@ -174,6 +155,12 @@ function VideoCamera(props) {
             })}
         </div>
     );
+}
+
+VideoCamera.propTypes = {
+    host: PropTypes.bool.isRequired,
+    currentPlayers: PropTypes.array.isRequired,
+    roomID: PropTypes.string.isRequired
 }
 
 export default VideoCamera;

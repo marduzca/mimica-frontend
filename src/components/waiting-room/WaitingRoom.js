@@ -101,6 +101,7 @@ WaitingRoom.propTypes = {
         state: PropTypes.shape({
             playerName: PropTypes.string.isRequired,
             language: PropTypes.string.isRequired,
+            roomID: PropTypes.string.isRequired,
             isHost: PropTypes.bool.isRequired
         })
     })

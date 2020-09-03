@@ -34,7 +34,7 @@ test('User can start the game with default settings', () => {
                     state: {
                         playerName: 'Miguel',
                         language: 'English',
-                        roomLink: 'https://mimica.com/?xweLh250oNmm',
+                        roomID: 'xweLh250oNmm',
                         isHost: true
                     }
                 }
@@ -67,7 +67,7 @@ test('User can start the game with custom settings', () => {
                     state: {
                         playerName: 'Miguel',
                         language: 'English',
-                        roomLink: 'https://mimica.com/?xweLh250oNmm',
+                        roomID: 'xweLh250oNmm',
                         isHost: true
                     }
                 }
@@ -95,7 +95,7 @@ test('Game settings are not updateable for guests', () => {
                     state: {
                         playerName: 'Miguel',
                         language: 'English',
-                        roomLink: 'https://mimica.com/?xweLh250oNmm',
+                        roomID: 'xweLh250oNmm',
                         isHost: false
                     }
                 }
