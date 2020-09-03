@@ -32,21 +32,19 @@ function VideoCamera(props) {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: false })
         .then((stream) => {
-          if (props.host) {
-            userVideo.current.srcObject = stream;
-          }
-          console.log("JOINED ROOM");
+          userVideo.current.srcObject = stream;
+
           console.log("MY ID: " + socket.id);
 
           props.currentPlayers.forEach((player) => {
             if (
               player.id !== socket.id &&
-              !peersRef.current.find((p) => p.peerID === player.id)
+              !peersRef.current.find((peer) => peer.id === player.id)
             ) {
               console.log("CREATE PEER FOR " + player.id);
               const peer = createPeer(player.id, socket.id, stream);
               peersRef.current.push({
-                peerID: player.id,
+                id: player.id,
                 peer,
               });
               peers.push(peer);
@@ -54,43 +52,29 @@ function VideoCamera(props) {
             }
           });
 
-          socket.on("user left", (player) => {
-            console.log("USER LEFT WITH ID " + player.id);
-            const item = peersRef.current.find((p) => p.peerID === player.id);
-
-            item.peer.destroy();
-            peersRef.current.splice(peersRef.current.indexOf(item), 1);
-            setPeers(peers.splice(peers.indexOf(item.peer), 1));
-          });
-
-          socket.on("user joined", (payload) => {
-            console.log("NEW USER JOINED");
-            console.log("ADDED PEER FOR " + payload.callerID);
-
-            const peer = addPeer(payload.signal, payload.callerID, stream);
-            peersRef.current.push({
-              peerID: payload.callerID,
-              peer,
-            });
-
-            setPeers((users) => [...users, peer]);
-          });
-
           socket.on("receiving returned signal", (payload) => {
             console.log("GOT ANSWER FROM PEER");
-            const item = peersRef.current.find((p) => p.peerID === payload.id);
+            const item = peersRef.current.find(
+              (peer) => peer.id === payload.id
+            );
 
             console.log("SIGNAL PEER");
 
             item.peer.signal(payload.signal);
           });
 
-          return stream;
+          socket.on("user left", (player) => {
+            console.log("USER LEFT WITH ID " + player.id);
+            const item = peersRef.current.find((peer) => peer.id === player.id);
+
+            item.peer.destroy();
+            peersRef.current.splice(peersRef.current.indexOf(item), 1);
+            setPeers(peers.splice(peers.indexOf(item.peer), 1));
+          });
         });
     } else {
       console.log("NON-HOST PATH");
 
-      console.log("JOINED ROOM");
       console.log("MY ID: " + socket.id);
 
       socket.on("user joined", (payload) => {
@@ -99,7 +83,7 @@ function VideoCamera(props) {
 
         const peer = addPeer(payload.signal, payload.callerID);
         peersRef.current.push({
-          peerID: payload.callerID,
+          id: payload.callerID,
           peer,
         });
 
@@ -123,14 +107,11 @@ function VideoCamera(props) {
     return peer;
   };
 
-  const addPeer = (incomingSignal, callerID, stream) => {
+  const addPeer = (incomingSignal, callerID) => {
     const peer = new Peer({
       initiator: false,
       trickle: false,
-      stream: stream,
     });
-
-    console.log("INSIDE ADD PEER FUNCTION");
 
     peer.on("signal", (signal) => {
       console.log("RETURNING SIGNAL TO " + callerID);
