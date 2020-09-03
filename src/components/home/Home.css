@@ -1,40 +1,41 @@
 #logo {
-    width: 300px;
-    margin: 10px auto;
+  width: 300px;
+  margin: 10px auto;
 }
 
 .login {
-    margin: 0 auto;
-    border: 3px solid rgb(62, 63, 68);
-    width: 600px;
-    height: 250px;
-    background-color: rgb(62, 63, 68);
-    box-shadow: 5px 5px 5px 5px rgba(37, 38, 41, 0.425);
+  margin: 0 auto;
+  border: 3px solid rgb(62, 63, 68);
+  width: 600px;
+  height: 250px;
+  background-color: rgb(62, 63, 68);
+  box-shadow: 5px 5px 5px 5px rgba(37, 38, 41, 0.425);
 }
 
 .input-fields {
-    color: rgb(225, 225, 225);
-    display: inline-block;
-    width: auto;
-    margin: 20px auto;
+  color: rgb(225, 225, 225);
+  display: inline-block;
+  width: auto;
+  margin: 20px auto;
 }
 
-.input-fields input, select {
-    height: 50px;
-    margin: 20px 20px;
+.input-fields input,
+select {
+  height: 50px;
+  margin: 20px 20px;
 }
 
 .error {
-    color: red;
-    margin: 0px auto;
+  color: red;
+  margin: 0px auto;
 }
 
 #playButton {
-    background-color: rgb(60, 129, 208);
-    width: 300px;
-    height: 50px;
-    display: block;
-    margin: 0px auto 0px auto;
-    border-radius: 10px;
-    color: white;
+  background-color: rgb(60, 129, 208);
+  width: 300px;
+  height: 50px;
+  display: block;
+  margin: 0px auto 0px auto;
+  border-radius: 10px;
+  color: white;
 }

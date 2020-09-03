@@ -1,12 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
-import HttpsRedirect from 'react-https-redirect';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import * as serviceWorker from "./serviceWorker";
+import HttpsRedirect from "react-https-redirect";
 
-
-import App from './components/app/App';
-import './i18n';
+import App from "./components/app/App";
+import "./i18n";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,7 +13,7 @@ ReactDOM.render(
       <App />
     </HttpsRedirect>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

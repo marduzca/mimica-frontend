@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // test('Elements (number of rounds, time) passed from waiting room page are displayed', () => {
 //     const name = 'Miguel';
@@ -21,7 +21,7 @@ import React from 'react';
 //     expect(Number(getNodeText(screen.getByTestId('timer-display')))).toBe(time);
 // });
 
-test('Turn ends when count down is over', () => {
-    //TODO
-    expect(true).toBeTruthy();
+test("Turn ends when count down is over", () => {
+  //TODO
+  expect(true).toBeTruthy();
 });

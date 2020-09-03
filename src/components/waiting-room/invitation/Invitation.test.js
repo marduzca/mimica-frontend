@@ -1,25 +1,25 @@
-import React from 'react';
-import {fireEvent, render, screen} from '@testing-library/react';
+import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
-import Invitation from './Invitation';
+import Invitation from "./Invitation";
 
-const {clipboard} = navigator;
+const { clipboard } = navigator;
 
 beforeAll(() => {
-    delete navigator.clipboard;
-    navigator.clipboard = {writeText: jest.fn()};
+  delete navigator.clipboard;
+  navigator.clipboard = { writeText: jest.fn() };
 });
 
 afterAll(() => {
-    navigator.clipboard = clipboard;
+  navigator.clipboard = clipboard;
 });
 
-test('Right value is copied to the clipboard', () => {
-    const roomLink = 'http://mimica.herokuapp.com/?room=xweLh250oNmm';
-    render(<Invitation roomLink={roomLink}/>);
+test("Right value is copied to the clipboard", () => {
+  const roomLink = "http://mimica.herokuapp.com/?room=xweLh250oNmm";
+  render(<Invitation roomLink={roomLink} />);
 
-    const copyButton = screen.getByRole('button', {name: 'Copy'});
-    fireEvent.click(copyButton);
+  const copyButton = screen.getByRole("button", { name: "Copy" });
+  fireEvent.click(copyButton);
 
-    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(roomLink);
+  expect(navigator.clipboard.writeText).toHaveBeenCalledWith(roomLink);
 });

@@ -1,20 +1,20 @@
 .player {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: rgb(62, 63, 68);
-    font-size: 20px;
-    min-width: 260px;
-    margin: 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(62, 63, 68);
+  font-size: 20px;
+  min-width: 260px;
+  margin: 40px 0;
 }
 
 .player p {
-    display: block;
+  display: block;
 }
 
 .player #crown {
-    width: 30px;
-    display: inline-block;
-    margin: auto 10px;
-    vertical-align: middle;
+  width: 30px;
+  display: inline-block;
+  margin: auto 10px;
+  vertical-align: middle;
 }

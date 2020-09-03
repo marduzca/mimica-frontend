@@ -1,56 +1,56 @@
 nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: rgb(60, 129, 208);
-    width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(60, 129, 208);
+  width: 100%;
 }
 
 nav ul {
-    margin: inherit;
-    width: inherit;
-    padding: inherit;
+  margin: inherit;
+  width: inherit;
+  padding: inherit;
 }
 
 nav li {
-    display: inline-block;
-    font-weight: 700;
-    color: white;
-    font-size: 20px;
-    margin: 0 20px;
+  display: inline-block;
+  font-weight: 700;
+  color: white;
+  font-size: 20px;
+  margin: 0 20px;
 }
 
 nav ul :hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 nav #logo {
-    display: inline-block;
-    width: 40px;
-    margin: 5px 0;
-    vertical-align: middle;
+  display: inline-block;
+  width: 40px;
+  margin: 5px 0;
+  vertical-align: middle;
 }
 
 nav .primary-navbar {
-    float: left;
+  float: left;
 }
 
 nav .secondary-navbar {
-    float: right;
+  float: right;
 }
 
 #flag {
-    padding: 0;
-    border: none;
-    background: none;
-    vertical-align: middle;
-    outline: none;
+  padding: 0;
+  border: none;
+  background: none;
+  vertical-align: middle;
+  outline: none;
 }
 
 #flag img {
-    height: 30px;
+  height: 30px;
 }
 
 #bala-easter-egg {
-    display: none;
-}  
+  display: none;
+}

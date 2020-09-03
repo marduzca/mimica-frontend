@@ -1,16 +1,16 @@
 .gamebar {
-    background-color: rgb(62, 63, 68);
-    color: white;
-    width: 100%;
+  background-color: rgb(62, 63, 68);
+  color: white;
+  width: 100%;
 }
 
 .game-info {
-    display: inline-flex;
-    width: 20%;
-    float: left;
-    justify-content: space-around;
+  display: inline-flex;
+  width: 20%;
+  float: left;
+  justify-content: space-around;
 }
 
 .timer {
-    min-width: 35px;
+  min-width: 35px;
 }
