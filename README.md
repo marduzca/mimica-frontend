@@ -1,5 +1,5 @@
 # Mimica Frontend
-Website to play charades remotely
+## Website to play charades remotely. Developed to practice FE learnings
 
 ---
 
